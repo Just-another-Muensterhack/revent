@@ -36,9 +36,9 @@ class _ProfilePageState extends State<ProfilePage> {
               color: Colors.white
             ),),),
           ],),
-          IconButton(onPressed: (){
+          Padding(padding: EdgeInsets.only(left: 15,), child: IconButton(onPressed: (){
 
-            }, icon: Icon(Icons.qr_code)),
+            }, icon: Icon(Icons.qr_code)),)
         ],
       )),
     ])));

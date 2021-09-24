@@ -95,9 +95,9 @@ class Event {
 
   // static create
   static Future<Event> create(organizerRef, title, description, date, genre,
-      price_class, img_url, event_location, website_url) async {
+      priceClass, imgURL, eventLocation, websiteURL) async {
     Event event = Event._(organizerRef, title, description, date, genre,
-        price_class, img_url, event_location, website_url);
+        priceClass, imgURL, eventLocation, websiteURL);
     event.save();
 
     return event;

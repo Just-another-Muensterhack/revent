@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:revent/models/commons.dart';
+import 'package:revent/utils/utils.dart';
 
 class Profile {
   String userUID = ""; // profile uuid
@@ -86,5 +87,10 @@ class Profile {
     } else {
       await _profileRef.doc(this.databaseID).update(this._toJson());
     }
+  }
+
+  // filters friends and only returns a sublist of memberIDs that
+  List<String> filterFriends({RequestStatus type = RequestStatus.accepted}) {
+    return filter(this.friends, type: type);
   }
 }

@@ -93,4 +93,20 @@ class Catch {
   List<String> filterMembers({RequestStatus type = RequestStatus.accepted}) {
     return filter(this.members, type: type);
   }
+
+
+  static Future<Catch> getByReference(String catchID) async {
+    Catch catchObject;
+    await _databaseRef
+        .where('id', isEqualTo: catchID)
+        .limit(1)
+        .get()
+        .then((value) => catchObject = value.docs.first.data());
+
+    return catchObject;
+  } 
+
+
+
+
 }

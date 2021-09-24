@@ -3,18 +3,6 @@ import 'package:revent/models/commons.dart';
 import 'package:revent/models/location.dart';
 
 class Event {
-  static Event mockEvent = Event._(
-      "orgRef",
-      "Super tolles Event",
-      "Eine wundervolle motivierende Beschreibung",
-      DateTime(2100),
-      [Genre.jazz, Genre.club, Genre.techno],
-      Price.expensive,
-      "https://i.imgur.com/AD3MbBi.jpeg",
-      Location.mockAddress,
-      "https://www.youtube.com/")
-    ..databaseID = "5WgLQ6fLOWqmNNMtewj7";
-
   String databaseID;
   String organizerRef;
   String title;
@@ -44,7 +32,8 @@ class Event {
       this.priceClass,
       this.imgURL,
       this.eventLocation,
-      this.websiteURL);
+      this.websiteURL
+      );
 
   // deserialize
   Event._fromJson(Map<String, Object> json) {
@@ -80,13 +69,11 @@ class Event {
     List<Event> events = [];
     await _databaseRef
         .where('date', isGreaterThan: DateTime.now())
-        // .where('genre', whereIn: this.genre)
         .orderBy('date', descending: true)
         .get()
         .then((value) {
       value.docs.forEach((document) {
         Event tmp = document.data();
-        //print("For each:" + document.id);
         tmp.databaseID = document.id;
         events.add(tmp);
       });
@@ -95,8 +82,6 @@ class Event {
   }
 
   Future<void> save() async {
-    //print(this.projectOwners);
-    //print("ID: " + this.id);
     if (this.databaseID == null || this.databaseID.isEmpty) {
       await _databaseRef.add(this).then((value) => this.databaseID = value.id);
     } else {

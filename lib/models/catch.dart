@@ -2,17 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:revent/models/Member.dart';
 import 'package:revent/models/commons.dart';
-import 'package:revent/models/event.dart';
 import 'package:revent/models/location.dart';
 
 class Catch {
-  static Catch mockCatch = Catch._([Event.mockEvent.databaseID]);
-
   String databaseID = "";
+  String owner = "";
   List<String> events = [];
   List<Member> members = [];
-  DateTime time = DateTime(2100);
-  Location place = Location.mockAddress;
+  DateTime time = DateTime(0);
+  Location place = Location("", 0, "", "", "");
 
   // database connection via json serialize and deserialize
   static final _databaseRef =
@@ -21,10 +19,11 @@ class Catch {
             toFirestore: (project, _) => project._toJson(),
           );
 
-  Catch._(this.events);
+  Catch._(this.owner, this.events);
 
   // deserialize
   Catch._fromJson(Map<String, Object> json) {
+    this.owner = json['owner'] as String;
     this.events = (json['events'] as List<dynamic>)
         .map((element) => element as String)
         .toList();
@@ -38,6 +37,7 @@ class Catch {
   // serialization
   Map<String, Object> _toJson() {
     return {
+      'owner': this.owner,
       'events': this.events,
       'members': this.members.map((Member e) => e.toJson()).toList(),
       'time': this.time,
@@ -55,7 +55,6 @@ class Catch {
         .then((value) {
       value.docs.forEach((document) {
         Catch tmp = document.data();
-        //print("For each:" + document.id);
         tmp.databaseID = document.id;
         events.add(tmp);
       });
@@ -64,8 +63,6 @@ class Catch {
   }
 
   Future<void> save() async {
-    //print(this.projectOwners);
-    //print("ID: " + this.id);
     if (this.databaseID == null || this.databaseID.isEmpty) {
       await _databaseRef.add(this).then((value) => this.databaseID = value.id);
     } else {
@@ -75,7 +72,7 @@ class Catch {
 
   // static create
   static Future<Catch> create(events) async {
-    Catch event = Catch._(events);
+    Catch event = Catch._(FirebaseAuth.instance.currentUser.uid, events);
     event.save();
 
     return event;

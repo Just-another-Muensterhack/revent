@@ -1,6 +1,4 @@
 class Location {
-  static Location mockAddress = Location("Street", 111, "23a", "Muenster", "Germany", latitude: 1.32, longitude: 22.232);
-
   String street;
   int postalCode;
   double latitude;

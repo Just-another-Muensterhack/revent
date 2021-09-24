@@ -53,14 +53,14 @@ class Event {
   // serialization
   Map<String, Object> _toJson() {
     return {
-      'organizerRef': this.organizerRef == null ? "" : this.organizerRef,
+      'organizerRef': this.organizerRef,
       'title': this.title,
       'description': this.description,
       'date': this.date,
       'genre': this.genre,
       'price_class': this.priceClass,
       'img_url': this.imgURL,
-      'event_location': this.eventLocation,
+      'event_location': this.eventLocation.toJson(),
       'website_url': this.websiteURL,
     };
   }

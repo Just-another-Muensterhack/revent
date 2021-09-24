@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:revent/models/commons.dart';
 import 'package:revent/models/location.dart';
+import 'package:revent/utils/utils.dart';
 
 class Catch {
   String databaseID;
@@ -87,5 +88,9 @@ class Catch {
         .delete()
         .then((_) => print("Catch Deleted"))
         .catchError((error) => print("Failed to delete Catch: $error"));
+  }
+
+  List<String> filterMembers({RequestStatus type = RequestStatus.accepted}) {
+    return filter(this.members, type: type);
   }
 }

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:revent/models/commons.dart';
+import 'package:revent/utils/utils.dart';
 
 class Profile {
   String userUID = ""; // profile uuid
@@ -88,16 +89,8 @@ class Profile {
     }
   }
 
-  
-  List<String> filter({type = RequestStatus::accepted}) async {
-    List<String> acceptedFriends = [];
-    
-    friends.forEach((key, value) {
-      if (value == type){	
-	acceptedFriends.add(key);
-      }
-    });
-    
-    return acceptedFriends;
+  // filters friends and only returns a sublist of memberIDs that
+  List<String> filterFriends({RequestStatus type = RequestStatus.accepted}) {
+    return filter(this.friends, type: type);
   }
 }

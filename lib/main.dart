@@ -10,14 +10,16 @@ const String AppTitle = "revent";
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
+  final ThemeData themeData = ThemeData();
+
   runApp(
     MaterialApp(
       title: AppTitle,
-      theme: ThemeData(
-        primaryColor: Color.fromRGBO(31, 38, 49, 1.0),
-        accentColor: Color.fromRGBO(130, 81, 202, 1.0),
-        backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
-        fontFamily: "Poppins",
+      theme: themeData.copyWith(
+        colorScheme: themeData.colorScheme.copyWith(
+          primary: Color.fromRGBO(31, 38, 49, 1.0),
+          secondary: Color.fromRGBO(130, 81, 202, 1.0),
+        ),
       ),
       home: App(),
       debugShowCheckedModeBanner: false,

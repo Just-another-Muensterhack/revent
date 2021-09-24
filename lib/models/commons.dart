@@ -8,6 +8,10 @@ enum Genre {
   jazz,
   club,
   techno,
+  concert,
+  music,
+  art,
+  theater,
 }
 
 // Request generally used for friendrequests or catches

@@ -13,7 +13,6 @@ class Event {
   String imgURL;
   Location eventLocation;
 
-
   // List<Video-Format> clip  <= TODO implement later
   String websiteURL;
 
@@ -33,21 +32,21 @@ class Event {
       this.priceClass,
       this.imgURL,
       this.eventLocation,
-      this.websiteURL);
+      this.websiteURL
+      );
 
   // deserialize
   Event._fromJson(Map<String, Object> json) {
     this.organizerRef = json['organizerRef'] as String;
     this.title = json['title'] as String;
     this.description = json['longitude'] as String;
-    this.date = json['date'] as DateTime;
+    this.date = (json['date'] as Timestamp).toDate();
     this.genre = (json['genre'] as List<dynamic>)
         .map((e) => Genre.values[e as int])
         .toList();
     this.priceClass = Price.values[json['price_class'] as int];
     this.imgURL = json['img_url'] as String;
-    this.eventLocation =
-        Location.fromJson(json['img_url'] as Map<String, Object>);
+    this.eventLocation = Location.fromJson(json['event_location']);
   }
 
   // serialization
@@ -57,8 +56,8 @@ class Event {
       'title': this.title,
       'description': this.description,
       'date': this.date,
-      'genre': this.genre,
-      'price_class': this.priceClass,
+      'genre': this.genre.map((Genre e) => e.index).toList(),
+      'price_class': this.priceClass.index,
       'img_url': this.imgURL,
       'event_location': this.eventLocation.toJson(),
       'website_url': this.websiteURL,
@@ -66,17 +65,15 @@ class Event {
   }
 
   //check functionality
-  Future<List<Event>> getEvents() async {
+  static Future<List<Event>> getEvents() async {
     List<Event> events = [];
     await _databaseRef
-        .where('date', isGreaterThan: this.date)
-        .where('genre', whereIn: this.genre)
+        .where('date', isGreaterThan: DateTime.now())
         .orderBy('date', descending: true)
         .get()
         .then((value) {
       value.docs.forEach((document) {
         Event tmp = document.data();
-        //print("For each:" + document.id);
         tmp.databaseID = document.id;
         events.add(tmp);
       });
@@ -85,8 +82,6 @@ class Event {
   }
 
   Future<void> save() async {
-    //print(this.projectOwners);
-    //print("ID: " + this.id);
     if (this.databaseID == null || this.databaseID.isEmpty) {
       await _databaseRef.add(this).then((value) => this.databaseID = value.id);
     } else {
@@ -111,5 +106,15 @@ class Event {
         .delete()
         .then((_) => print("Event Deleted"))
         .catchError((error) => print("Failed to delete Event: $error"));
+  }
+
+  static Future<Event> getByReference(String eventID) async {
+    Event event;
+    await _databaseRef.doc(eventID).get().then((value) {
+      event = value.data();
+      event.databaseID = value.id;
+    });
+
+    return event;
   }
 }

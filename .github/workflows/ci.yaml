@@ -1,0 +1,60 @@
+name: Flutter (apk + iOS)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyse:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2.3.0
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+        check-latest: false
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'stable'
+    - run: flutter pub get
+    - run: flutter format .
+    - run: flutter analyze .
+    #- run: flutter test
+
+  build:
+    runs-on: macos-latest
+    needs: [analyse]
+    strategy:
+      matrix:
+        platform: [ 'apk', 'ios --no-codesign' ]
+  
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2.3.0
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+        check-latest: false
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'stable'
+    - run: flutter pub get
+
+    - run: flutter build ${{ matrix.platform }}
+
+    - if: ${{ matrix.platform == 'ios --no-codesign' }}
+      run: |
+        mkdir -p Payload
+        mv ./build/ios/iphoneos/Runner.app Payload
+        zip -r -y Payload.zip Payload/Runner.app
+        mv Payload.zip Payload.ipa
+    - uses: actions/upload-artifact@v2
+      with:
+        name: release-apk
+        path: |
+          build/app/outputs/apk/release/app-release.apk
+          Payload.ipa
+        if-no-files-found: ignore

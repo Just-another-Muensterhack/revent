@@ -1,8 +1,8 @@
 
-// this file specifies commenly used enums and other helpfull 
+// this file specifies commonly used enums and other helpful
 
 
-// genres of eventes and user preferences
+// genres of events and user preferences
 enum Genre { 
   classic,
   jazz,

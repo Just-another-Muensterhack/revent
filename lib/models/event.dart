@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:revent/models/commons.dart';
 import 'package:revent/models/location.dart';
 
 class Event {
@@ -8,12 +9,12 @@ class Event {
   String description;
   DateTime date;
   List<Genre> genre = [];
-  Price price_class = Price.CHEAP;
-  String img_url;
-  Location event_location;
+  Price priceClass = Price.cheap;
+  String imgURL;
+  Location eventLocation;
 
   // List<Video-Format> clip  <= TODO implement later
-  String website_url;
+  String websiteURL;
 
   // database connection via json serialize and deserialize
   static final _databaseRef =
@@ -28,10 +29,10 @@ class Event {
       this.description,
       this.date,
       this.genre,
-      this.price_class,
-      this.img_url,
-      this.event_location,
-      this.website_url);
+      this.priceClass,
+      this.imgURL,
+      this.eventLocation,
+      this.websiteURL);
 
   // deserialize
   Event._fromJson(Map<String, Object> json) {
@@ -42,9 +43,9 @@ class Event {
     this.genre = (json['genre'] as List<dynamic>)
         .map((e) => Genre.values[e as int])
         .toList();
-    this.price_class = Price.values[json['price_class'] as int];
-    this.img_url = json['img_url'] as String;
-    this.event_location =
+    this.priceClass = Price.values[json['price_class'] as int];
+    this.imgURL = json['img_url'] as String;
+    this.eventLocation =
         Location.fromJson(json['img_url'] as Map<String, Object>);
   }
 
@@ -56,10 +57,10 @@ class Event {
       'description': this.description,
       'date': this.date,
       'genre': this.genre,
-      'price_class': this.price_class,
-      'img_url': this.img_url,
-      'event_location': this.event_location,
-      'website_url': this.website_url,
+      'price_class': this.priceClass,
+      'img_url': this.imgURL,
+      'event_location': this.eventLocation,
+      'website_url': this.websiteURL,
     };
   }
 

@@ -15,13 +15,13 @@ class CustomInput extends StatelessWidget{
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      width: size.width * 0.8,
+      width: size.width,
       decoration: BoxDecoration(
         color:Colors.white,
         border: Border.all(),),
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      child: TextField(onChanged: onChanged,
+      child: TextField(onChanged: (value) => onChanged(value),
         obscureText: obscureText,
         decoration: InputDecoration(
             hintText: hintText,

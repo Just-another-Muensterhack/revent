@@ -87,4 +87,17 @@ class Profile {
       await _profileRef.doc(this.databaseID).update(this._toJson());
     }
   }
+
+  
+  List<String> filter({type = RequestStatus::accepted}) async {
+    List<String> acceptedFriends = [];
+    
+    friends.forEach((key, value) {
+      if (value == type){	
+	acceptedFriends.add(key);
+      }
+    });
+    
+    return acceptedFriends;
+  }
 }

@@ -16,7 +16,7 @@ class Profile {
   Map<String, RequestStatus> friends = {};
   String qrToken = "";
 
-  static final _profileRef =
+  static final _databaseRef =
       FirebaseFirestore.instance.collection('profile').withConverter<Profile>(
             fromFirestore: (snapshot, _) => Profile._fromJson(snapshot.data()),
             toFirestore: (profile, _) => profile._toJson(),
@@ -67,7 +67,7 @@ class Profile {
   }
 
   Future<void> delete() async {
-    return await _profileRef
+    return await _databaseRef
         .doc(this.databaseID)
         .delete()
         .then((_) => print("Profile Deleted"))
@@ -75,17 +75,17 @@ class Profile {
   }
 
   static Future<Profile> create(birthday) async {
-    Profile event = Profile._(birthday);
-    event.save();
+    Profile profile = Profile._(birthday);
+    profile.save();
 
-    return event;
+    return profile;
   }
 
   Future<void> save() async {
     if (this.databaseID == null || this.databaseID.isEmpty) {
-      await _profileRef.add(this).then((value) => this.databaseID = value.id);
+      await _databaseRef.add(this).then((value) => this.databaseID = value.id);
     } else {
-      await _profileRef.doc(this.databaseID).update(this._toJson());
+      await _databaseRef.doc(this.databaseID).update(this._toJson());
     }
   }
 
@@ -93,4 +93,16 @@ class Profile {
   List<String> filterFriends({RequestStatus type = RequestStatus.accepted}) {
     return filter(this.friends, type: type);
   }
+
+  
+  static Future<Profile> getByReference(String userUID) async {
+    Profile profile;
+    await _databaseRef
+        .where('user_uid', isEqualTo: userUID)
+        .limit(1)
+        .get()
+        .then((value) => profile = value.docs.first.data());
+
+    return profile;
+  } 
 }

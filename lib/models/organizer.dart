@@ -58,7 +58,7 @@ class Organizer {
     }
   }
 
-  static Future<Organizer> getOrganizer(String organizerRef) async {
+  static Future<Organizer> getByReference(String organizerRef) async {
     Organizer organizer;
     await _databaseRef
         .where('id', isEqualTo: organizerRef)

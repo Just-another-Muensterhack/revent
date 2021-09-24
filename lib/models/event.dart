@@ -112,4 +112,16 @@ class Event {
         .then((_) => print("Event Deleted"))
         .catchError((error) => print("Failed to delete Event: $error"));
   }
+
+  static Future<Event> getByReference(String eventID) async {
+    Event event;
+    await _databaseRef
+        .where('id', isEqualTo: eventID)
+        .limit(1)
+        .get()
+        .then((value) => event = value.docs.first.data());
+
+    return event;
+  } 
+
 }

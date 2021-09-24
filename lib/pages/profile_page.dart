@@ -23,15 +23,17 @@ class _ProfilePageState extends State<ProfilePage> {
         decoration: BoxDecoration(color: Colors.deepPurpleAccent,
           borderRadius: BorderRadius.circular(25)),
         child: Row(children: <Widget>[
-          CircleAvatar(backgroundImage:
-            NetworkImage(""),
-          ),
+          Padding(padding: EdgeInsets.all(15), child: CircleAvatar(radius:50, backgroundImage:
+          NetworkImage("https://www.appmanufacture.ch/wp-content/uploads/2016/10/2_small.png"),
+          ),),
           Column(children: <Widget>[
             Padding(padding: EdgeInsets.only(top: 15), child: Text("Max", style:  TextStyle(
-              fontSize: 18
+              fontSize: 18,
+              color: Colors.white
             ),),),
             Padding(padding: EdgeInsets.only(bottom: 15), child: Text("Mustermann", style: TextStyle(
-              fontSize: 18
+              fontSize: 18,
+              color: Colors.white
             ),),),
           ],),
           IconButton(onPressed: (){

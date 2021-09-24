@@ -5,9 +5,9 @@ class CustomInput extends StatelessWidget{
   final ValueChanged<String> onChanged;
   final bool obscureText;
 
-  CustomInput({Key? key,
-    required this.hintText,
-    required this.onChanged,
+  CustomInput({Key key,
+    this.hintText,
+    this.onChanged,
     this.obscureText = false}) : super(key: key);
 
   @override

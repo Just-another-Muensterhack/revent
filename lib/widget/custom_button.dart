@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:revent/constants/colors.dart';
 
 class CustomButton extends StatelessWidget{
-  CustomButton({Key? key, required this.buttonText, required this.onPress, this.color = Colors.white}) : super(key: key);
+  CustomButton({Key key, this.buttonText, this.onPress, this.color = Colors.white}) : super(key: key);
 
   final String buttonText;
   final Function onPress;

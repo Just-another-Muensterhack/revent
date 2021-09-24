@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:revent/models/profile.dart';
-import 'package:revent/widgets/custom_button.dart';
-import 'package:revent/widgets/custom_textfield.dart';
 import 'package:revent/constants/colors.dart';
 import 'package:revent/models/commons.dart';
 import 'package:revent/pages/auth/login/select_interests_page.dart';

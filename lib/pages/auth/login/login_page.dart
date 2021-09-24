@@ -4,7 +4,6 @@ import 'package:flutter_signin_button/button_view.dart';
 import 'package:revent/constants/colors.dart';
 import 'package:revent/pages/home_page.dart';
 import 'package:revent/services/auth_service.dart';
-import 'package:revent/widgets/custom_button.dart';
 
 class LoginPage extends StatefulWidget {
   @override

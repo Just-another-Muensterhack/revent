@@ -7,7 +7,7 @@ import 'package:revent/models/friend.dart';
 
 class Profile {
   String userUID = ""; // profile uuid
-  String databaseID;
+  String databaseID= "";
 
   DateTime birthday; // age verification
   DateTime registrated;
@@ -17,7 +17,7 @@ class Profile {
   String qrToken = "";
 
   static final _databaseRef =
-      FirebaseFirestore.instance.collection('profile').withConverter<Profile>(
+      FirebaseFirestore.instance.collection('profiles').withConverter<Profile>(
             fromFirestore: (snapshot, _) => Profile._fromJson(snapshot.data()),
             toFirestore: (profile, _) => profile._toJson(),
           );
@@ -32,7 +32,7 @@ class Profile {
     this.userUID = json['user_uid'] as String;
     this.databaseID = json['id'] as String;
     this.registrated = (json['registrated'] as Timestamp).toDate();
-    this.birthday = (json['birthdate'] as Timestamp).toDate();
+    this.birthday = (json['birthday'] as Timestamp).toDate();
     this.qrToken = json['qr_tokens'] as String;
 
     this.friends = (json['friends'] as List<dynamic>)
@@ -95,9 +95,13 @@ class Profile {
 
   static Future<Profile> getByReference(String userUID) async {
     Profile profile;
-    await _databaseRef.doc(userUID).get().then((value) {
-      profile = value.data();
-      profile.databaseID = value.id;
+    await _databaseRef
+        .where('user_uid', isEqualTo: userUID)
+        .limit(1)
+        .get()
+        .then((value) {
+      profile = value.docs.first.data();
+      profile.databaseID = value.docs.first.id;
     });
 
     return profile;

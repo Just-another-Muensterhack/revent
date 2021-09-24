@@ -44,7 +44,8 @@ class AuthService {
         throw Exception();
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -55,9 +56,13 @@ class AuthService {
     } else {
       GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
-      await FirebaseAuth.instance.signInWithPopup(googleProvider);
-      //await FirebaseAuth.instance.signInWithRedirect(googleProvider);
+      //await FirebaseAuth.instance.signInWithPopup(googleProvider);
+      await FirebaseAuth.instance.signInWithRedirect(googleProvider);
     }
+  }
+
+  static Future<void> signInAnonymously() async {
+    await FirebaseAuth.instance.signInAnonymously();
   }
 
   static Future<void> signOut() async {

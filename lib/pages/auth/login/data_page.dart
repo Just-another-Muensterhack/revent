@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:revent/constants/colors.dart';
+import 'package:revent/models/commons.dart';
 import 'package:revent/models/profile.dart';
+import 'package:revent/pages/auth/login/select_interests_page.dart';
 import 'package:revent/widget/custom_button.dart';
 import 'package:revent/widget/custom_textfield.dart';
 
-class DataPage extends StatefulWidget{
+class DataPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _DataPageState();
 }
 
-class _DataPageState extends State<DataPage>{
+class _DataPageState extends State<DataPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  //String _number = '';
-  //String _gender = '';
   DateTime _birthday = DateTime.now();
+  List<Genre> favorites = [];
 
-  Future<void> _sendForm()async{
+  Future<void> _sendForm() async {
     return Profile.create(_birthday);
   }
 
-  void _openDatePicker(BuildContext context){
+  void _openDatePicker(BuildContext context) {
     showDatePicker(
-        context: context,
-        initialDate: _birthday,
-        firstDate: DateTime(1900),
-        lastDate: DateTime.now()
-    ).then((value) {setState(() {
-      _birthday = value;
+            context: context,
+            initialDate: _birthday,
+            firstDate: DateTime(1900),
+            lastDate: DateTime.now())
+        .then((value) {
+      setState(() {
+        _birthday = value;
       });
     });
   }
@@ -33,34 +37,35 @@ class _DataPageState extends State<DataPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Form(
-                child: Column(
-                  children: [
-                    CustomInput(hintText: "type in #", onChanged: (value) => this.setState(() {
-                      //this._number = value;
-                    })),
-                    CustomInput(hintText: "gender", onChanged: (value) => this.setState(() {
-                      //this._gender = value;
-                    })),
-                    CustomButton(
-                      buttonText: "select birthday",
-                      onPress: () => _openDatePicker(context),
-                    )
-                  ],
-                )
-            ),
-            CustomButton(
-              buttonText: "let´s celebrate",
-              onPress: () => _sendForm(),
-            )
-          ],
+      backgroundColor: primary,
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                validator: (String input) {
+                  return null;
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  icon: Icon(Icons.title),
+                  hintText: "Choose your favorite genres!",
+                  labelText: "Favorites *",
+                ),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SelectInterestsPage(),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      )
+      ),
     );
   }
-
 }

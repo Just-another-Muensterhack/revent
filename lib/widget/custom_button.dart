@@ -14,10 +14,18 @@ class CustomButton extends StatelessWidget{
     Size size = MediaQuery.of(context).size;
 
     return Container(width:size.width,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: primary)),
-        child: ClipRRect(child: TextButton(onPressed: () => onPress(),
-          child: Text(buttonText, style: TextStyle(color: Colors.black),),),),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: primary),
+      ),
+      child: ClipRRect(
+        child: TextButton(onPressed: () => onPress(),
+          child: Text(
+            buttonText,
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ),
     );
   }
 }

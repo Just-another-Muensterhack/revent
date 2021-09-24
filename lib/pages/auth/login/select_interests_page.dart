@@ -9,7 +9,6 @@ class SelectInterestsPage extends StatefulWidget{
 }
 
 class _SelectInterestsPageState extends State<SelectInterestsPage> {
-  // List<bool> _cardsValue = [];
   Map<int, bool> _cardsValue = {};
 
   @override

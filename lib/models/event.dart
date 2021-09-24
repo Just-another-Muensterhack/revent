@@ -40,7 +40,7 @@ class Event {
     this.organizerRef = json['organizerRef'] as String;
     this.title = json['title'] as String;
     this.description = json['longitude'] as String;
-    this.date = json['date'] as DateTime;
+    this.date = DateTime.fromMillisecondsSinceEpoch(json['date']);
     this.genre = (json['genre'] as List<dynamic>)
         .map((e) => Genre.values[e as int])
         .toList();
@@ -56,7 +56,7 @@ class Event {
       'organizerRef': this.organizerRef,
       'title': this.title,
       'description': this.description,
-      'date': this.date,
+      'date': this.date.millisecondsSinceEpoch,
       'genre': this.genre,
       'price_class': this.priceClass,
       'img_url': this.imgURL,
@@ -76,7 +76,6 @@ class Event {
         .then((value) {
       value.docs.forEach((document) {
         Event tmp = document.data();
-        //print("For each:" + document.id);
         tmp.databaseID = document.id;
         events.add(tmp);
       });
@@ -112,4 +111,5 @@ class Event {
         .then((_) => print("Event Deleted"))
         .catchError((error) => print("Failed to delete Event: $error"));
   }
+
 }

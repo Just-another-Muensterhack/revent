@@ -5,8 +5,9 @@ import 'package:revent/constants/colors.dart';
 class CustomButton extends StatelessWidget{
   final String buttonText;
   final Function onPress;
+  final Color color;
 
-  const CustomButton({Key? key, required this.buttonText, required this.onPress}) : super(key: key);
+  const CustomButton({Key? key, required this.buttonText, required this.onPress, required this.color }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CustomButton extends StatelessWidget{
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),
         border: Border.all(color: primary, width: 2)),
         child: ClipRRect(child: TextButton(style: TextButton.styleFrom(backgroundColor: Colors.transparent), onPressed: onPress(),
-          child: Text(buttonText, style: TextStyle(color: Colors.black),),),),
+          child: Text(buttonText, style: TextStyle(color: this.color),),),),
     );
   }
 }

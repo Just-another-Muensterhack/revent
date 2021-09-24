@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:revent/main.dart';
 import 'package:revent/models/commons.dart';
-import 'package:revent/models/event.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/explore_page.dart';
 import 'package:revent/pages/profile_page.dart';
-import 'package:revent/widget/event_card.dart';
 
 class HomePage extends StatefulWidget {
   @override

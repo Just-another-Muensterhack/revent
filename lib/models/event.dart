@@ -39,7 +39,7 @@ class Event {
   Event._fromJson(Map<String, Object> json) {
     this.organizerRef = json['organizerRef'] as String;
     this.title = json['title'] as String;
-    this.description = json['longitude'] as String;
+    this.description = json['description'] as String;
     this.date = (json['date'] as Timestamp).toDate();
     this.genre = (json['genre'] as List<dynamic>)
         .map((e) => Genre.values[e as int])

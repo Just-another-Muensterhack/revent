@@ -16,9 +16,9 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(body: Container(child: Column(children: <Widget>[
       Padding(padding: EdgeInsets.only(top: 50, left: 50, bottom: 10),
         child: Row(children: <Widget>[
-          Text("Profile",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),)
-      ],),),
+
+        ],),
+      ),
       Container(width: size.width * 0.8,
         decoration: BoxDecoration(color: Colors.deepPurpleAccent,
           borderRadius: BorderRadius.circular(25)),

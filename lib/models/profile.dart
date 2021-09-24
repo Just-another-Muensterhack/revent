@@ -32,7 +32,7 @@ class Profile {
     this.userUID = json['user_uid'] as String;
     this.databaseID = json['id'] as String;
     this.registrated = (json['registrated'] as Timestamp).toDate();
-    this.birthday = (json['birthdate'] as Timestamp).toDate();
+    this.birthday = (json['birthday'] as Timestamp).toDate();
     this.qrToken = json['qr_tokens'] as String;
 
     this.friends = (json['friends'] as List<dynamic>)

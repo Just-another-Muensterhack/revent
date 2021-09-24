@@ -13,6 +13,7 @@ class Event {
   String imgURL;
   Location eventLocation;
 
+
   // List<Video-Format> clip  <= TODO implement later
   String websiteURL;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:revent/pages/auth/login/data_page.dart';
 import 'package:revent/services/auth_service.dart';
-import 'package:revent/widget/custom_button.dart';
+import 'package:revent/widgets/custom_button.dart';
 
 class LoginPage extends StatefulWidget{
   @override

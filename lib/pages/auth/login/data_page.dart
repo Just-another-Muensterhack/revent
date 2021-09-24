@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:revent/models/profile.dart';
-import 'package:revent/widget/custom_button.dart';
-import 'package:revent/widget/custom_textfield.dart';
+import 'package:revent/widgets/custom_button.dart';
+import 'package:revent/widgets/custom_textfield.dart';
 
 class DataPage extends StatefulWidget{
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:revent/widget/custom_textfield.dart';
+import 'package:revent/widgets/custom_textfield.dart';
 
 class RegisterPage extends StatefulWidget{
   @override

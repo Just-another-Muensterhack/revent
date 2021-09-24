@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:revent/constants/colors.dart';
 import 'package:revent/models/commons.dart';
-import 'package:revent/widget/custom_button.dart';
+import 'package:revent/widgets/custom_button.dart';
 
 class SelectInterestsPage extends StatefulWidget {
   @override

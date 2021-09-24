@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:revent/constants/colors.dart';
 
 class CustomButton extends StatelessWidget{
+  CustomButton({Key? key, required this.buttonText, required this.onPress, this.color = Colors.white}) : super(key: key);
+
   final String buttonText;
   final Function onPress;
-
-  const CustomButton({Key? key, required this.buttonText, required this.onPress}) : super(key: key);
+  final Color color;
 
   @override
   Widget build(BuildContext context) {

@@ -3,18 +3,6 @@ import 'package:revent/models/commons.dart';
 import 'package:revent/models/location.dart';
 
 class Event {
-  static Event mockEvent = Event._(
-      "orgRef",
-      "Super tolles Event",
-      "Eine wundervolle motivierende Beschreibung",
-      DateTime(2100),
-      [Genre.jazz, Genre.club, Genre.techno],
-      Price.expensive,
-      "https://i.imgur.com/AD3MbBi.jpeg",
-      Location.mockAddress,
-      "https://www.youtube.com/")
-    ..databaseID = "5WgLQ6fLOWqmNNMtewj7";
-
   String databaseID;
   String organizerRef;
   String title;

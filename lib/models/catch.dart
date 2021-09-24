@@ -2,17 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:revent/models/Member.dart';
 import 'package:revent/models/commons.dart';
-import 'package:revent/models/event.dart';
 import 'package:revent/models/location.dart';
 
 class Catch {
-  static Catch mockCatch = Catch._([Event.mockEvent.databaseID]);
-
   String databaseID = "";
   List<String> events = [];
   List<Member> members = [];
-  DateTime time = DateTime(2100);
-  Location place = Location.mockAddress;
+  DateTime time = DateTime(0);
+  Location place = Location("", 0, "", "", "");
 
   // database connection via json serialize and deserialize
   static final _databaseRef =
@@ -64,8 +61,6 @@ class Catch {
   }
 
   Future<void> save() async {
-    //print(this.projectOwners);
-    //print("ID: " + this.id);
     if (this.databaseID == null || this.databaseID.isEmpty) {
       await _databaseRef.add(this).then((value) => this.databaseID = value.id);
     } else {

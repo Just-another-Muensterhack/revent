@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:revent/widget/custom_textfield.dart';
 
 class RegisterPage extends StatefulWidget{
   @override
@@ -7,9 +8,19 @@ class RegisterPage extends StatefulWidget{
 
 class _RegisterPageState extends State<RegisterPage>{
 
+  static const int CREDENTIAL_PAGE = 0;
+  static const int DATA_PAGE = 1;
+
   int _stepperIndex = 0;
 
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
+
+  String _mail = '';
+  String _pass = '';
+
+  String _number = '';
+  String _gender = '';
+  String _birthday = '';
 
   InputDecoration inpDec = new InputDecoration(
     border: OutlineInputBorder(),
@@ -25,6 +36,14 @@ class _RegisterPageState extends State<RegisterPage>{
         currentStep: _stepperIndex,
         onStepContinue: () => this.setState(() {
           _stepperIndex++;
+
+          // check of form is validated
+          if(_key.currentState.validate()){
+
+          }else{
+            print('not valid');
+          }
+
         }),
         onStepCancel: () => this.setState(() {
           _stepperIndex--;
@@ -41,22 +60,16 @@ class _RegisterPageState extends State<RegisterPage>{
               content: Form(
                 child: Column(
                   children: [
-                    TextFormField(),
+                    CustomInput(hintText: "Google Mail", onChanged: (value) => this.setState(() {
+                      this._mail = value;
+                    })),
+                    CustomInput(hintText: "Password",onChanged: (value) => this.setState(() {
+                      this._pass = value;
+                    }))
                   ],
                 ),
               )
           ),
-          Step(
-              title: Text("Your data"),
-              content: Form(
-                child: Column(
-                  children: [
-                    TextFormField(),
-                    TextFormField(),
-                  ],
-                ),
-              )
-          )
         ],
       ),
     );

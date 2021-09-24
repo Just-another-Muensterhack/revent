@@ -24,12 +24,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_core: "^1.5.0"
-  firebase_auth: "^3.0.2"
+  firebase_core: "^1.6.0"
+  firebase_auth: "^3.1.1"
   google_sign_in: "^4.5.1"
-  github_sign_in: "^0.0.1"
+  cloud_firestore: "^2.5.3"
+  cloud_functions: "^3.0.3"
   firebase_analytics: "^8.3.0"
-  cloud_firestore: "^2.5.0"
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -87,3 +87,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic

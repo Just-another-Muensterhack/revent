@@ -22,7 +22,7 @@ void main() {
           secondary: Color.fromRGBO(130, 81, 202, 1.0),
         ),
       ),
-      home: LoginPage(),
+      home: App(),
       debugShowCheckedModeBanner: false,
     ),
   );
@@ -46,7 +46,7 @@ class _AppState extends State<App> {
 
       FirebaseAuth.instance.userChanges().listen((User user) {
         setState(() {
-          this._currentPage = user == null ? Container() : Container();
+          this._currentPage = user == null ? LoginPage() : Container();
         });
       });
 

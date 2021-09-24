@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:revent/constants/colors.dart';
+import 'package:revent/pages/home_page.dart';
 import 'package:revent/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,9 +12,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   void _goToHomePage(BuildContext context) {
-    Navigator.of(context).push(
+    Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => Container(),
+        builder: (context) => HomePage(),
       ),
     );
   }
@@ -50,18 +51,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SignInButton(
                 Buttons.Email,
-                text: "E-Mail",
-                onPressed: () {
-                  final snackBar =
-                      SnackBar(content: Text("Currently not available!"));
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                },
-              ),
-              Container(
-                height: 10.0,
-              ),
-              SignInButton(
-                null,
                 text: "E-Mail",
                 onPressed: () => AuthService.signInAnonymously()
                     .then((value) => this._goToHomePage(context)),

@@ -11,8 +11,8 @@ class DataPage extends StatefulWidget{
 
 class _DataPageState extends State<DataPage>{
 
-  String _number = '';
-  String _gender = '';
+  //String _number = '';
+  //String _gender = '';
   DateTime _birthday = DateTime.now();
 
   Future<void> _sendForm()async{
@@ -43,10 +43,10 @@ class _DataPageState extends State<DataPage>{
                 child: Column(
                   children: [
                     CustomInput(hintText: "type in #", onChanged: (value) => this.setState(() {
-                      this._number = value;
+                      //this._number = value;
                     })),
                     CustomInput(hintText: "gender", onChanged: (value) => this.setState(() {
-                      this._gender = value;
+                      //this._gender = value;
                     })),
                     CustomButton(
                       buttonText: "select birthday",

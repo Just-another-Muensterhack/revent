@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:revent/pages/auth/login/data_page.dart';
 import 'package:revent/services/auth_service.dart';
 import 'package:revent/widget/custom_button.dart';
-import 'package:revent/widget/custom_textfield.dart';
 import 'package:revent/widget/image_appbar.dart';
 
 class LoginPage extends StatefulWidget{
@@ -23,11 +22,6 @@ class _LoginPageState extends State<LoginPage>{
           ))
       );
     }
-
-    int _stepperIndex = 0;
-
-    String _mail = '';
-    String _password = '';
 
     return Scaffold(
       appBar: imageAppBar(),

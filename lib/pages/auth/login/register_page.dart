@@ -8,19 +8,16 @@ class RegisterPage extends StatefulWidget{
 
 class _RegisterPageState extends State<RegisterPage>{
 
-  static const int CREDENTIAL_PAGE = 0;
-  static const int DATA_PAGE = 1;
-
   int _stepperIndex = 0;
 
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
-  String _mail = '';
-  String _pass = '';
+  //String _mail = '';
+  //String _pass = '';
 
-  String _number = '';
-  String _gender = '';
-  String _birthday = '';
+  //String _number = '';
+  //String _gender = '';
+  //String _birthday = '';
 
   InputDecoration inpDec = new InputDecoration(
     border: OutlineInputBorder(),
@@ -61,10 +58,10 @@ class _RegisterPageState extends State<RegisterPage>{
                 child: Column(
                   children: [
                     CustomInput(hintText: "Google Mail", onChanged: (value) => this.setState(() {
-                      this._mail = value;
+                      //this._mail = value;
                     })),
                     CustomInput(hintText: "Password",onChanged: (value) => this.setState(() {
-                      this._pass = value;
+                      //this._pass = value;
                     }))
                   ],
                 ),

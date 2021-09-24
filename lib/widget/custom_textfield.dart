@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomInput extends StatelessWidget{
-  String hintText = '';
+  final String hintText;
   final ValueChanged<String> onChanged;
   final bool obscureText;
 
   CustomInput({Key key,
-    this.hintText,
-    this.onChanged,
-    this.obscureText = false}) : super(key: key);
+      this.hintText,
+      this.onChanged,
+      this.obscureText = false}
+    ) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

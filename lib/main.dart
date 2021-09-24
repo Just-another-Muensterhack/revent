@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:revent/pages/auth/login/login_page.dart';
 import 'package:revent/pages/splash_screen.dart';
 import 'package:revent/services/auth_service.dart';
 
@@ -21,7 +22,7 @@ void main() {
           secondary: Color.fromRGBO(130, 81, 202, 1.0),
         ),
       ),
-      home: App(),
+      home: LoginPage(),
       debugShowCheckedModeBanner: false,
     ),
   );

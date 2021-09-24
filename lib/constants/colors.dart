@@ -1,3 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
-const primary = Color(0xFF8c78b5);
+const primary = Color.fromRGBO(31, 38, 49, 1.0);
+const secondary = Color.fromRGBO(130, 81, 202, 1.0);

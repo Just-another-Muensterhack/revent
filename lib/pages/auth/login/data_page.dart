@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:revent/models/profile.dart';
 import 'package:revent/widget/custom_button.dart';
 import 'package:revent/widget/custom_textfield.dart';
-import 'package:revent/widget/image_appbar.dart';
 
 class DataPage extends StatefulWidget{
   @override
@@ -34,7 +33,6 @@ class _DataPageState extends State<DataPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: imageAppBar(),
       body: Padding(
         padding: EdgeInsets.all(10.0),
         child: Column(

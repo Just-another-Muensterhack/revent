@@ -29,8 +29,9 @@ jobs:
     needs: [analyse]
     strategy:
       matrix:
-        platform: [ 'apk', 'ios --no-codesign' ]
-  
+        #platform: [ 'apk', 'ios --no-codesign' ]
+        platform: [ 'apk' ]
+        
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v2.3.0

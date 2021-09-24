@@ -39,21 +39,24 @@ class _SelectInterestsPageState extends State<SelectInterestsPage> {
             scrollDirection: Axis.horizontal,
             itemCount: Genre.values.length,
             itemBuilder: (BuildContext context, int index) => Card(
-                color: _cardsValue[index] ? primary : Colors.grey,
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      _cardsValue[index] = !_cardsValue[index];
-                    });
-                  },
-                  child: Container(
-                      width: size.width * 0.25,
-                      child: Center(
-                          child: Text(
-                        Genre.values[index].toString().split(".").last,
-                        style: TextStyle(color: Colors.white),
-                      ))),
-                )),
+              color: _cardsValue[index] ? primary : Colors.grey,
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    _cardsValue[index] = !_cardsValue[index];
+                  });
+                },
+                child: Container(
+                  width: size.width * 0.25,
+                  child: Center(
+                    child: Text(
+                      Genre.values[index].toString().split(".").last,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
         Padding(

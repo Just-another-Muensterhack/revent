@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:revent/pages/home_page.dart';
 import 'package:revent/pages/landing_page.dart';
+import 'package:revent/pages/home_page.dart';
 import 'package:revent/pages/splash_screen.dart';
 import 'package:revent/services/auth_service.dart';
 
@@ -40,7 +39,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  bool _initialized = false; // TODO CHANGE
+  bool _initialized = false;
   bool _error = false;
 
   Widget _currentPage = SplashScreen();

@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:revent/filters/color_filters.dart';
 import 'package:revent/models/event.dart';
 
-class EventCard extends StatelessWidget{
-
-  Event event;
+class EventCard extends StatefulWidget{
 
   EventCard({Key key, Event event});
+
+  @override
+  State<EventCard> createState() => _EventCardState();
+}
+
+class _EventCardState extends State<EventCard> {
+  Event event;
 
   @override
   Widget build(BuildContext context) {
@@ -77,5 +82,4 @@ class EventCard extends StatelessWidget{
       ),
     );
   }
-
 }

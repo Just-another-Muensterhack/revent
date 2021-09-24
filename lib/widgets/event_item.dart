@@ -17,7 +17,11 @@ class EventItem extends StatelessWidget {
       ),
       title: Text(event.title, style: TextStyle(color: Colors.white)),
       subtitle: Text(event.description, style: TextStyle(color: Colors.white)),
-      trailing: const Text("blub")
+      trailing: OutlinedButton(
+        onPressed: () => { print('pressed ${event.databaseID}') },
+        child: const Text('join now'),
+        style: ButtonStyle(foregroundColor: MaterialStateProperty.resolveWith((states) => Colors.white))
+      )
     );
   }
 }

@@ -20,6 +20,10 @@ void main() {
           primary: Color.fromRGBO(31, 38, 49, 1.0),
           secondary: Color.fromRGBO(130, 81, 202, 1.0),
         ),
+        textTheme: ThemeData.dark().textTheme.apply(
+          fontFamily: 'Poppins',
+          bodyColor: Colors.white
+        )
       ),
       home: App(),
       debugShowCheckedModeBanner: false,

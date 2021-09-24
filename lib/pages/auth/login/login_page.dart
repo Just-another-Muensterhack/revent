@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-
-
-String mailValidator(value){
-  if(value.isEmpty){
-    return 'Please fill in the Email';
-  }
-  return "";
-}
+import 'package:revent/pages/auth/login/data_page.dart';
+import 'package:revent/services/auth_service.dart';
+import 'package:revent/widget/custom_button.dart';
+import 'package:revent/widget/custom_textfield.dart';
+import 'package:revent/widget/image_appbar.dart';
 
 class LoginPage extends StatefulWidget{
   @override
@@ -15,50 +12,32 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPageState extends State<LoginPage>{
 
-  // Decorator for google-Mail input
-  InputDecoration _mailDecoration = new InputDecoration(
-    border: OutlineInputBorder(),
-    icon: Icon(Icons.mail),
-    hintText: "Please Enter your Google-Mail",
-    labelText: "Mail"
-  );
-
-
   @override
   Widget build(BuildContext context) {
 
+    void _sendForm(){
+      //sign in and open data page
+      AuthService.signInWithGoogle().then(
+              (value) => Navigator.push(context, MaterialPageRoute(
+              builder: (context) => DataPage()
+          ))
+      );
+    }
+
     int _stepperIndex = 0;
 
+    String _mail = '';
+    String _password = '';
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text("TODO create universal bar"),
-      ),
-      body: Stepper(
-        steps: [
-          Step(
-              title: Text("Get Started"),
-              content: Column(
-                children: [
-                  ElevatedButton(
-                      onPressed:() => {},
-                      child: Text("Get Started"),
-                  )
-                ],
-              )
-          ),
-          Step(
-              title: Text("Credentials"),
-              content: Column(
-                children: [
-                  ElevatedButton(onPressed: () => {}, child: Text("Login with Google"))
-                ],
-              )
-          ),
-          Step(
-            title: Text("Your Data"),
-            content: Column(),  // TODO fill
-          )
-        ],
+      appBar: imageAppBar(),
+      body: Padding(
+        padding: EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            CustomButton(buttonText: "Sign in with Google", onPress: () => _sendForm(),)
+          ],
+        ),
       )
     );
   }

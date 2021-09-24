@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:revent/models/profile.dart';
 import 'package:revent/widget/custom_button.dart';
 import 'package:revent/widget/custom_textfield.dart';
+import 'package:revent/widget/image_appbar.dart';
 
 class DataPage extends StatefulWidget{
   @override
@@ -11,16 +13,28 @@ class _DataPageState extends State<DataPage>{
 
   String _number = '';
   String _gender = '';
-  String _birthday = '';
+  DateTime _birthday = DateTime.now();
 
-  Future<void> sendForm()async{
-    print('Form was sent');
+  Future<void> _sendForm()async{
+    return Profile.create(_birthday);
+  }
+
+  void _openDatePicker(BuildContext context){
+    showDatePicker(
+        context: context,
+        initialDate: _birthday,
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now()
+    ).then((value) {setState(() {
+      _birthday = value;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Title"),),
+      appBar: imageAppBar(),
       body: Padding(
         padding: EdgeInsets.all(10.0),
         child: Column(
@@ -34,22 +48,20 @@ class _DataPageState extends State<DataPage>{
                     CustomInput(hintText: "gender", onChanged: (value) => this.setState(() {
                       this._gender = value;
                     })),
-                    CustomInput(hintText: "birthday", onChanged: (value) => this.setState(() {
-                      this._birthday = value;
-                    })),
+                    CustomButton(
+                      buttonText: "select birthday",
+                      onPress: () => _openDatePicker(context),
+                    )
                   ],
                 )
             ),
             CustomButton(
               buttonText: "let´s celebrate",
-              onPress: () async {
-                await sendForm().then((value) => {});
-              },
+              onPress: () => _sendForm(),
             )
           ],
         ),
       )
-      
     );
   }
 

@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:revent/models/location.dart';
 
 class Organizer {
-  String databaseID;
-  String name;
-  String address;
-  String websiteURL;
-  List<String> owners;
+  static Organizer mockOrganizer =
+      Organizer._("Lustiger Nae", Location.mockAddress, "dsg");
+
+  String databaseID = "";
+  String name = "";
+  Location address;
+  String websiteURL = "";
+  List<String> owners = [];
 
   static final _databaseRef = FirebaseFirestore.instance
       .collection('organizer')
@@ -19,17 +23,17 @@ class Organizer {
   }
 
   Organizer._fromJson(Map<String, Object> json) {
-    this.databaseID = json['id'] as String;
     this.name = json['name'] as String;
-    this.address = json['address'] as String;
+    this.address = Location.fromJson(json['address']);
     this.websiteURL = json['websiteURL'] as String;
-    this.owners = json['owners'] as List<String>;
+    this.owners =
+        (json['owners'] as List<dynamic>).map((e) => e as String).toList();
   }
 
   Map<String, Object> _toJson() {
     return {
       'name': this.name,
-      'address': this.address,
+      'address': this.address.toJson(),
       'websiteURL': this.websiteURL,
       'owners': this.owners,
     };
@@ -52,7 +56,9 @@ class Organizer {
 
   Future<void> save() async {
     if (this.databaseID == null || this.databaseID.isEmpty) {
-      await _databaseRef.add(this).then((value) => this.databaseID = value.id);
+      await _databaseRef.add(this).then((value) {
+        this.databaseID = value.id;
+      });
     } else {
       await _databaseRef.doc(this.databaseID).update(this._toJson());
     }
@@ -60,11 +66,10 @@ class Organizer {
 
   static Future<Organizer> getByReference(String organizerRef) async {
     Organizer organizer;
-    await _databaseRef
-        .where('id', isEqualTo: organizerRef)
-        .limit(1)
-        .get()
-        .then((value) => organizer = value.docs.first.data());
+    await _databaseRef.doc(organizerRef).get().then((value) {
+      organizer = value.data();
+      organizer.databaseID = value.id;
+    });
 
     return organizer;
   }

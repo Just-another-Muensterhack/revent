@@ -3,6 +3,18 @@ import 'package:revent/models/commons.dart';
 import 'package:revent/models/location.dart';
 
 class Event {
+  static Event mockEvent = Event._(
+      "orgRef",
+      "Super tolles Event",
+      "Eine wundervolle motivierende Beschreibung",
+      DateTime(2100),
+      [Genre.jazz, Genre.club, Genre.techno],
+      Price.expensive,
+      "https://i.imgur.com/AD3MbBi.jpeg",
+      Location.mockAddress,
+      "https://www.youtube.com/")
+    ..databaseID = "5WgLQ6fLOWqmNNMtewj7";
+
   String databaseID;
   String organizerRef;
   String title;
@@ -12,7 +24,6 @@ class Event {
   Price priceClass = Price.cheap;
   String imgURL;
   Location eventLocation;
-
 
   // List<Video-Format> clip  <= TODO implement later
   String websiteURL;
@@ -40,14 +51,13 @@ class Event {
     this.organizerRef = json['organizerRef'] as String;
     this.title = json['title'] as String;
     this.description = json['longitude'] as String;
-    this.date = json['date'] as DateTime;
+    this.date = (json['date'] as Timestamp).toDate();
     this.genre = (json['genre'] as List<dynamic>)
         .map((e) => Genre.values[e as int])
         .toList();
     this.priceClass = Price.values[json['price_class'] as int];
     this.imgURL = json['img_url'] as String;
-    this.eventLocation =
-        Location.fromJson(json['img_url'] as Map<String, Object>);
+    this.eventLocation = Location.fromJson(json['event_location']);
   }
 
   // serialization
@@ -57,8 +67,8 @@ class Event {
       'title': this.title,
       'description': this.description,
       'date': this.date,
-      'genre': this.genre,
-      'price_class': this.priceClass,
+      'genre': this.genre.map((Genre e) => e.index).toList(),
+      'price_class': this.priceClass.index,
       'img_url': this.imgURL,
       'event_location': this.eventLocation.toJson(),
       'website_url': this.websiteURL,
@@ -66,11 +76,11 @@ class Event {
   }
 
   //check functionality
-  Future<List<Event>> getEvents() async {
+  static Future<List<Event>> getEvents() async {
     List<Event> events = [];
     await _databaseRef
-        .where('date', isGreaterThan: this.date)
-        .where('genre', whereIn: this.genre)
+        .where('date', isGreaterThan: DateTime.now())
+        // .where('genre', whereIn: this.genre)
         .orderBy('date', descending: true)
         .get()
         .then((value) {
@@ -115,13 +125,11 @@ class Event {
 
   static Future<Event> getByReference(String eventID) async {
     Event event;
-    await _databaseRef
-        .where('id', isEqualTo: eventID)
-        .limit(1)
-        .get()
-        .then((value) => event = value.docs.first.data());
+    await _databaseRef.doc(eventID).get().then((value) {
+      event = value.data();
+      event.databaseID = value.id;
+    });
 
     return event;
-  } 
-
+  }
 }

@@ -41,6 +41,21 @@ class _ProfilePageState extends State<ProfilePage> {
             }, icon: Icon(Icons.qr_code)),)
         ],
       )),
+      Container(height: 40),
+      Container(width: size.width * 0.8,
+          decoration: BoxDecoration(color: Colors.deepPurpleAccent,
+              borderRadius: BorderRadius.circular(25)),
+          child: Column(
+            children: <Widget>[
+              ListTile(title: const Text("Account", style: TextStyle(color: Colors.white)), trailing: IconButton(icon: const Icon(Icons.arrow_right), color: Colors.white, onPressed: () => print('hui hui hui imma go to "Account" now'))),
+              ListTile(title: const Text("Friends", style: TextStyle(color: Colors.white)), trailing: IconButton(icon: const Icon(Icons.arrow_right), color: Colors.white, onPressed: () => print('hui hui hui imma go to "Friends" now'))),
+              ListTile(title: const Text("Notifications", style: TextStyle(color: Colors.white)), trailing: IconButton(icon: const Icon(Icons.arrow_right), color: Colors.white, onPressed: () => print('hui hui hui imma go to "Notifications" now'))),
+              // divider here pls :3
+              ListTile(title: const Text("Data & Privacy", style: TextStyle(color: Colors.white)), trailing: IconButton(icon: const Icon(Icons.arrow_right), color: Colors.white, onPressed: () => print('hui hui hui imma go to "Data & Privacy" now'))),
+              ListTile(title: const Text("Impressum", style: TextStyle(color: Colors.white)), trailing: IconButton(icon: const Icon(Icons.arrow_right), color: Colors.white, onPressed: () => print('hui hui hui imma go to "Impressum" now')))
+            ]
+          )
+      )
     ])));
   }
 }

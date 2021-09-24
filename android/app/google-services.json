@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "710532243226",
+    "project_id": "revent-2ce19",
+    "storage_bucket": "revent-2ce19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710532243226:android:f07e59717842e5fc5d16a3",
+        "android_client_info": {
+          "package_name": "de.reventapp.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710532243226-b95d4jdm1rut0l8d5ut6jciv0toupgu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVV8JOuZ9sdORLpGwq-gPddV6e8rL1CYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710532243226-b95d4jdm1rut0l8d5ut6jciv0toupgu1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

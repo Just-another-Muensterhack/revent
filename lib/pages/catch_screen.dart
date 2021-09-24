@@ -8,8 +8,8 @@ class CatchPage extends StatefulWidget {
 }
 
 class _CatchPageState extends State<CatchPage> {
-  bool _is_ready = false;
-  bool _is_error = false;
+  bool _isReady = false;
+  bool _isError = false;
   List<Event> _events = [];
 
   @override
@@ -17,14 +17,14 @@ class _CatchPageState extends State<CatchPage> {
     Event.getEvents()
       .then((List<Event> events) {
         setState(() {
-          _is_ready = true;
-          _is_error = false;
+          _isReady = true;
+          _isError = false;
           _events = events;
         });
       })
       .catchError((err) {
         setState(() {
-          _is_error = true;
+          _isError = true;
         });
       });
 
@@ -33,7 +33,7 @@ class _CatchPageState extends State<CatchPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_is_error) {
+    if (_isError) {
       return Scaffold(
         // appBar: imageAppBar(),
           backgroundColor: Color(0xFF1F2631),
@@ -43,7 +43,7 @@ class _CatchPageState extends State<CatchPage> {
       );
     }
 
-    if (!_is_ready) {
+    if (!_isReady) {
       return Scaffold(
         backgroundColor: Color(0xFF1F2631),
         body: Center(

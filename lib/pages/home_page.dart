@@ -43,12 +43,11 @@ Widget _getWidgetOptions(int index, BuildContext context) {
                           borderRadius: BorderRadius.circular(20),
                           gradient: LinearGradient(
                               begin: Alignment.topLeft,
-                              end: Alignment(1.0, 0.0), // 10% of the width, so there are ten blinds.
+                              end: Alignment(1.0, 0.0),
                               colors: const <Color>[
 
                                 Color.fromARGB(150, 176, 128, 248),
                                 Color.fromARGB(125, 130,  81, 202),
-                                Color.fromARGB(100, 165, 131, 215),
                               ],
                               tileMode: TileMode.repeated
                           )

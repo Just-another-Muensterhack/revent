@@ -3,7 +3,6 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:revent/constants/colors.dart';
 import 'package:revent/pages/auth/login/data_page.dart';
-import 'package:revent/pages/home_page.dart';
 import 'package:revent/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {

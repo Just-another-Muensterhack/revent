@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:revent/constants/colors.dart';
 import 'package:revent/models/commons.dart';

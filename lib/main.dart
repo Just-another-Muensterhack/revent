@@ -87,7 +87,7 @@ class _AppState extends State<App> {
     }
 
     return Container(
-      color: primary.withOpacity(0.75),
+      color: primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,12 +95,6 @@ class _AppState extends State<App> {
           Container(
             constraints: BoxConstraints(
               maxWidth: 550,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                8.0,
-              ),
-              color: primary,
             ),
             child: _currentPage,
           ),

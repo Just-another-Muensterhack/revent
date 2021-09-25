@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:revent/models/commons.dart';
 import 'package:revent/models/location.dart';
+import 'package:revent/models/organizer.dart';
 
 class Event {
   String databaseID;
@@ -15,6 +16,7 @@ class Event {
 
   // List<Video-Format> clip  <= TODO implement later
   String websiteURL;
+
 
   // database connection via json serialize and deserialize
   static final _databaseRef =
@@ -32,8 +34,7 @@ class Event {
       this.priceClass,
       this.imgURL,
       this.eventLocation,
-      this.websiteURL
-      );
+      this.websiteURL);
 
   // deserialize
   Event._fromJson(Map<String, Object> json) {

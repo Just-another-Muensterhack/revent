@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:revent/main.dart';
 import 'package:revent/models/commons.dart';
 import 'package:revent/pages/catch_screen.dart';
+import 'package:revent/pages/explore_page.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
 import 'package:revent/services/auth_service.dart';
@@ -16,63 +17,7 @@ class HomePage extends StatefulWidget {
 Widget _getWidgetOptions(int index, BuildContext context) {
   switch (index) {
     case 0:
-      return Padding(
-        padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 1,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: Genre.values.length,
-                  itemBuilder: (context, index) {
-                    Genre genre = Genre.values[index];
-
-                    return Chip(
-                      avatar: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: const Text("AB"),
-                      ),
-                      label: Text(
-                          genre.toString().substring(6, 7).toUpperCase() +
-                              genre.toString().substring(7)),
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 4,
-              child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Events",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(25),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Container(
-                            color: Colors.white12,
-                            height: MediaQuery.of(context).size.height * 0.5,
-                            width: MediaQuery.of(context).size.width * 0.8,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
-            ),
-          ],
-        ),
-      );
+      return ExplorePage();
     case 1:
       return CatchPage();
     case 2:
@@ -98,15 +43,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: primary,
         elevation: 0.0,
+        /*
         leading: IconButton(
             onPressed: () async => (AuthService.signInWithGoogle()),
-            icon: Icon(Icons.menu)),
+            icon: Icon(Icons.menu)),*/
         title: Center(
           child: Text(
             "revent",
             style: TextStyle(fontFamily: "Poppings"),
           ),
         ),
+        /*
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
@@ -114,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               //TODO test here
             },
           )
-        ],
+        ],*/
       ),
       body: _getWidgetOptions(_navigationbarIndex, context),
       bottomNavigationBar: new Theme(
@@ -137,12 +84,12 @@ class _HomePageState extends State<HomePage> {
           },
           items: [
             BottomNavigationBarItem(
-              label: "Home",
-              icon: Icon(Icons.home),
-            ),
-            BottomNavigationBarItem(
               label: "Explore",
               icon: Icon(Icons.explore),
+            ),
+            BottomNavigationBarItem(
+              label: "Catch",
+              icon: Icon(Icons.cake),
             ),
             BottomNavigationBarItem(
               label: "Map",

@@ -78,6 +78,7 @@ class _CreateCatchPageState extends State<CreateCatchPage> {
           padding: EdgeInsets.all(15),
           children: [
             TextField(
+              cursorColor: Colors.white,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -97,6 +98,7 @@ class _CreateCatchPageState extends State<CreateCatchPage> {
               height: 20,
             ),
             TextField(
+              cursorColor: Colors.white,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -127,11 +129,11 @@ class _CreateCatchPageState extends State<CreateCatchPage> {
                         Icons.event_note,
                         color: Colors.white,
                       ),
-                      title: Text(_dateTime.day.toString() +
+                      title: Text(_dateTime.day.toString().padLeft(2, "0") +
                           ":" +
-                          _dateTime.month.toString() +
+                          _dateTime.month.toString().padLeft(2, "0") +
                           ":" +
-                          _dateTime.year.toString()),
+                          _dateTime.year.toString().padLeft(4, " ")),
                     ),
                     ListTile(
                       onTap: () async => _openTimePicker(context),
@@ -139,9 +141,9 @@ class _CreateCatchPageState extends State<CreateCatchPage> {
                         Icons.access_time,
                         color: Colors.white,
                       ),
-                      title: Text(_timeOfDay.hour.toString() +
+                      title: Text(_timeOfDay.hour.toString().padLeft(2, "0") +
                           ":" +
-                          _timeOfDay.minute.toString()),
+                          _timeOfDay.minute.toString().padLeft(2, "0")),
                     ),
                   ],
                 ),

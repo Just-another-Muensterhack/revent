@@ -2,9 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:revent/models/location.dart';
 
 class Organizer {
-  static Organizer mockOrganizer =
-      Organizer._("Lustiger Nae", Location.mockAddress, "dsg");
-
   String databaseID = "";
   String name = "";
   Location address;
@@ -73,4 +70,10 @@ class Organizer {
 
     return organizer;
   }
+
+  Future<void> addOwners(String newOwner) async {
+    this.owners.add(newOwner);
+    this.save();
+  }
+
 }

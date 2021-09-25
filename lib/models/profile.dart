@@ -123,4 +123,12 @@ class Profile {
 
     return profile;
   }
+
+  Future<void> friendsAdd(String userUID, {RequestStatus status = RequestStatus.accepted}) async{
+    List<Friend> mem = this.friends.where((element) => element.userUID == userUID).toList();
+    if(mem.isNotEmpty){
+      mem.first.status = status;
+      await this.save();
+    }
+  }
 }

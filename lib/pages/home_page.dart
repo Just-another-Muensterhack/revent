@@ -77,7 +77,8 @@ Widget _getWidgetOptions(int index, BuildContext context) {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Container(
-                            color: Colors.white12,
+                            decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.white54, Colors.white12])),
+                            //color: Colors.white12,
                             height: MediaQuery.of(context).size.height * 0.5,
                             width: MediaQuery.of(context).size.width * 0.8,
                           ),

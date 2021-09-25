@@ -80,9 +80,15 @@ class Profile {
   }
 
   static Future<Profile> create(birthday) async {
+    String profilePicture = FirebaseAuth.instance.currentUser.photoURL;
+
+    if(profilePicture.isEmpty){
+      profilePicture = "https://i.redd.it/sfmtr1ztii061.jpg"; // change later
+    }
+
     Profile profile = Profile._(
         FirebaseAuth.instance.currentUser.displayName,
-        FirebaseAuth.instance.currentUser.photoURL,
+        profilePicture,
         birthday);
     profile.save();
 

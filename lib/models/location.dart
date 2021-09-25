@@ -1,6 +1,6 @@
 class Location {
   String street;
-  int postalCode;
+  String postalCode;
   double latitude;
   double longitude;
   String houseNumber;
@@ -14,7 +14,7 @@ class Location {
   // deserialize
   Location.fromJson(Map<String, Object> json) {
     this.street = json['address'] as String;
-    this.postalCode = json['postal_code'] as int;
+    this.postalCode = json['postal_code'] as String;
     this.latitude = json['latitude'] as double;
     this.longitude = json['longitude'] as double;
     this.houseNumber = json['house_number'] as String;

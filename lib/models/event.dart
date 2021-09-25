@@ -32,8 +32,7 @@ class Event {
       this.priceClass,
       this.imgURL,
       this.eventLocation,
-      this.websiteURL
-      );
+      this.websiteURL);
 
   // deserialize
   Event._fromJson(Map<String, Object> json) {

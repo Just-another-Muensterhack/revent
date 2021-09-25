@@ -55,8 +55,8 @@ class AuthService {
     } else {
       GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
-      //await FirebaseAuth.instance.signInWithPopup(googleProvider);
-      await FirebaseAuth.instance.signInWithRedirect(googleProvider);
+      await FirebaseAuth.instance.signInWithPopup(googleProvider);
+      //await FirebaseAuth.instance.signInWithRedirect(googleProvider);
     }
   }
 

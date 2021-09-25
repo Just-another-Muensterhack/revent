@@ -83,7 +83,7 @@ class Profile {
     String profilePicture = FirebaseAuth.instance.currentUser.photoURL;
 
     if(profilePicture.isEmpty){
-      profilePicture = "https://i.redd.it/sfmtr1ztii061.jpg"; // change later
+      profilePicture = "https://i.imgur.com/73QQVJ3.png"; // change later
     }
 
     Profile profile = Profile._(

@@ -7,6 +7,7 @@ import 'package:revent/pages/catch_screen.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
 import 'package:revent/services/auth_service.dart';
+import 'package:revent/services/search_service.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,6 +22,35 @@ Widget _getWidgetOptions(int index, BuildContext context) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Padding(
+              padding: EdgeInsets.all(25),
+              child: (
+                TextField(
+                  decoration: new InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Color.fromRGBO(130, 81, 202, 1.0), width: 4.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Color.fromRGBO(130, 81, 202, 1.0), width: 4.0),
+                    ),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.fromLTRB(18, 0, 12, 0),
+                      child: Icon(Icons.search, color: Colors.white),
+                    ),
+                    hintText: "Search",
+                    hintStyle: TextStyle(color: Colors.white),
+                  ),
+                  cursorColor: Colors.white,
+                  textInputAction: TextInputAction.go,
+                  onSubmitted: (term) {
+                    SearchService.searchEvent(term, [])
+                      .then((idk) {print(idk);});
+                  },
+                )
+              ),
+            ),
             Container(
               height: 36,
               child: Align(
@@ -41,7 +71,12 @@ Widget _getWidgetOptions(int index, BuildContext context) {
                           borderRadius: BorderRadius.circular(20),
                           color: Color.fromRGBO(130, 81, 202, 1.0),
                         ),
-                        child: Center(child: Text(genre.toString().substring(6, 7).toUpperCase() + genre.toString().substring(7), style: TextStyle(fontWeight: FontWeight.w700)))
+                        child: Center(
+                          child: Text(
+                            genre.toString().substring(6, 7).toUpperCase() + genre.toString().substring(7),
+                            style: TextStyle(fontWeight: FontWeight.w700)
+                          )
+                        )
                       )
                     );
                   },

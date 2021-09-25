@@ -8,13 +8,13 @@ class Member {
       this.status);
 
   Member.fromJson(Map<String, Object> json) {
-    this.userUID = json['userUsID'] as String;
+    this.userUID = json['user_uid'] as String;
     this.status = RequestStatus.values[json['status'] as int];
   }
 
   Map<String, Object> toJson() {
     return {
-      'userUID': this.userUID,
+      'user_uid': this.userUID,
       'status': this.status.index,
     };
   }

@@ -20,9 +20,9 @@ Widget _getWidgetOptions(int index, BuildContext context) {
     case 1:
       return CatchPage();
     case 2:
-      return MapPage();
-    case 3:
       return ProfilePage();
+    case 3:
+      return MapPage();
   }
 
   return Container(
@@ -99,10 +99,10 @@ class _HomePageState extends State<HomePage> {
               label: "Explore",
               icon: Icon(Icons.explore),
             ),
-            FloatingNavbarItem(
+            /*FloatingNavbarItem(
               label: "Map",
               icon: Icon(Icons.map),
-            ),
+            ),*/
             FloatingNavbarItem(
               label: "Profile",
               icon: Icon(Icons.person),

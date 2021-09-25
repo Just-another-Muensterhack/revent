@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 class GenericList<T> extends StatefulWidget {
   final List<T> _list;
   final String Function(T elm) _builder;
+  final List<T> initial;
 
-  GenericList(this._list, this._builder);
+  GenericList(this._list, this._builder, this.initial);
 
   State<GenericList> createState() => _GenericListState();
 }
 
 class _GenericListState<T> extends State<GenericList<T>> {
-  List<T> _result = [];
+  List<T> _result;
+
+  @override
+  void initState() {
+    this._result = []..addAll(widget.initial);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

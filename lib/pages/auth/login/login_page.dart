@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:revent/constants/colors.dart';
+import 'package:revent/models/profile.dart';
 import 'package:revent/pages/auth/login/data_page.dart';
+import 'package:revent/pages/home_page.dart';
 import 'package:revent/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,10 +13,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  void _goToHomePage(BuildContext context) {
+  void _next(BuildContext context) async {
+    bool exists =
+        await Profile.profileExists(userUID: AuthService.currentUser().uid);
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => DataPage(),
+        builder: (context) => exists ? HomePage() : DataPage(),
       ),
     );
   }
@@ -28,11 +32,20 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text(
+                "Sign in with",
+                style: TextStyle(color: Colors.white, fontSize: 20.0),
+              ),
+              Container(
+                height: 5.0,
+              ),
               SignInButton(
                 Buttons.Google,
                 text: "Google",
-                onPressed: () => AuthService.signInWithGoogle()
-                    .then((value) => this._goToHomePage(context)),
+                onPressed: () =>
+                    AuthService.signInWithGoogle().then((value) async {
+                  this._next(context);
+                }),
               ),
               /*
               Container(

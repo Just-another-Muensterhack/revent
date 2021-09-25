@@ -19,12 +19,12 @@ class Profile {
   String qrToken = "";
 
   static final _databaseRef =
-  FirebaseFirestore.instance.collection('profiles').withConverter<Profile>(
-    fromFirestore: (snapshot, _) => Profile._fromJson(snapshot.data()),
-    toFirestore: (profile, _) => profile._toJson(),
-  );
+      FirebaseFirestore.instance.collection('profiles').withConverter<Profile>(
+            fromFirestore: (snapshot, _) => Profile._fromJson(snapshot.data()),
+            toFirestore: (profile, _) => profile._toJson(),
+          );
 
-  Profile._(this.displayName, this.profileURL, this.birthday) {
+  Profile._(this.displayName, this.profileURL, this.birthday, this.favorites) {
     this.userUID = FirebaseAuth.instance.currentUser.uid;
     this.registrated = DateTime.now();
     this.generateToken();
@@ -78,23 +78,21 @@ class Profile {
         .catchError((error) => print("Failed to delete Profile: $error"));
   }
 
-  static Future<Profile> create(DateTime birthday, [ String username ]) async {
+  static Future<Profile> create(
+      DateTime birthday, String username, List<Genre> favorites) async {
     String profilePicture = FirebaseAuth.instance.currentUser.photoURL;
 
     if (profilePicture.isEmpty) {
       profilePicture =
           "https://raw.githubusercontent.com/Just-another-Muensterhack/" +
-          "revent-assets/main/default_profile_picture.png"; // change later
+              "revent-assets/main/default_profile_picture.png"; // change later
     }
 
-    if( username.isEmpty ){
+    if (username.isEmpty) {
       username = FirebaseAuth.instance.currentUser.displayName;
     }
 
-    Profile profile = Profile._(
-        username,
-        profilePicture,
-        birthday);
+    Profile profile = Profile._(username, profilePicture, birthday, favorites);
     profile.save();
 
     return profile;
@@ -111,6 +109,22 @@ class Profile {
   // filters friends and only returns a sublist of memberIDs that
   List<Friend> filterFriends({RequestStatus type = RequestStatus.accepted}) {
     return this.friends.where((element) => element.status == type).toList();
+  }
+
+  static Future<bool> profileExists({String userUID}) async {
+    if (userUID == null) userUID = FirebaseAuth.instance.currentUser.uid;
+
+    await _databaseRef
+        .where('user_uid', isEqualTo: userUID)
+        .limit(1)
+        .get()
+        .then((value) {
+      if (value != null) {
+        return true;
+      }
+    });
+
+    return false;
   }
 
   static Future<Profile> getByReference({String userUID}) async {

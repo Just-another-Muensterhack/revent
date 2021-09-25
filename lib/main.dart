@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:revent/pages/home_page.dart';
+import 'package:revent/pages/landing_page.dart';
 import 'package:revent/pages/splash_screen.dart';
 import 'package:revent/services/auth_service.dart';
 
@@ -51,7 +52,7 @@ class _AppState extends State<App> {
 
       FirebaseAuth.instance.userChanges().listen((User user) {
         setState(() {
-          this._currentPage = user == null ? HomePage() : HomePage();
+          this._currentPage = user == null ? LandingPage() : HomePage();
         });
       });
 

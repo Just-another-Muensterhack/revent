@@ -12,7 +12,7 @@ class Catch {
   DateTime time = DateTime(2000);
   Location place = Location("", 0, "", "", "");
   String title = "";
-  String description ="";
+  String description = "";
 
   // database connection via json serialize and deserialize
   static final _databaseRef =
@@ -101,14 +101,10 @@ class Catch {
 
   static Future<Catch> getByReference(String catchID) async {
     Catch catchObject;
-    await _databaseRef
-        .doc(catchID)
-        .get()
-        .then((value) {
+    await _databaseRef.doc(catchID).get().then((value) {
       catchObject = value.data();
       catchObject.databaseID = value.id;
     });
-
     return catchObject;
   }
 
@@ -118,5 +114,14 @@ class Catch {
         .where((element) => element.userUID == myUserUID)
         .first
         .status;
+  }
+
+  Future<void> changeMyStatus(RequestStatus status) async {
+    members
+        .where((element) =>
+            element.userUID == FirebaseAuth.instance.currentUser.uid)
+        .first
+        .status = status;
+    await this.save();
   }
 }

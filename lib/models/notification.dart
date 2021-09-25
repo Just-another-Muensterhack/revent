@@ -3,13 +3,13 @@ enum notification_status {
   dismissed,
 }
 
-class Notification{
+class NotificationModel{
   String title;
   String body;
   DateTime created = DateTime.now();
 
   notification_status status = notification_status.unread;
 
-  Notification(this.title, this.body, {this.created});
+  NotificationModel(this.title, this.body, {this.created, this.status});
 
 }

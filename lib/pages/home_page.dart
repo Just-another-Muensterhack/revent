@@ -8,6 +8,7 @@ import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
 import 'package:revent/widgets/generic_list.dart';
 import 'package:revent/services/auth_service.dart';
+import 'package:revent/widgets/floating_navbar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -139,9 +140,7 @@ class _HomePageState extends State<HomePage> {
             textTheme: Theme.of(context)
                 .textTheme
                 .copyWith(caption: new TextStyle(color: Colors.yellow))),
-        child: BottomNavigationBar(
-          elevation: 0.0,
-          type: BottomNavigationBarType.fixed,
+        child: FloatingNavbar(
           selectedItemColor: secondary,
           unselectedItemColor: Colors.grey,
           backgroundColor: primary,
@@ -152,19 +151,19 @@ class _HomePageState extends State<HomePage> {
             });
           },
           items: [
-            BottomNavigationBarItem(
+            FloatingNavbarItem(
               label: "Home",
               icon: Icon(Icons.home),
             ),
-            BottomNavigationBarItem(
+            FloatingNavbarItem(
               label: "Explore",
               icon: Icon(Icons.explore),
             ),
-            BottomNavigationBarItem(
+            FloatingNavbarItem(
               label: "Map",
               icon: Icon(Icons.map),
             ),
-            BottomNavigationBarItem(
+            FloatingNavbarItem(
               label: "Profile",
               icon: Icon(Icons.person),
             ),

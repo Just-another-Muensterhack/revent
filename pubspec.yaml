@@ -36,6 +36,7 @@ dependencies:
   firebase_analytics: "^8.3.0"
   cloud_firestore: "^2.5.0"
   cloud_functions: "^3.0.3"
+  firebase_messaging: "^5.1.4"
 
   flutter_signin_button: "^2.0.0"
 

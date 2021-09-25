@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:revent/pages/auth/login/login_page.dart';
 import 'package:revent/services/auth_service.dart';
 import 'package:revent/widgets/custom_button.dart';
 
@@ -131,7 +132,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 trailing: IconButton(
                   icon: const Icon(Icons.arrow_right),
                   color: Colors.white,
-                  onPressed: () => {}))
+                  onPressed: () => {})),
+              ListTile(
+                title: const Text("Logout",
+                  style: TextStyle(color: Colors.white)),
+                trailing: IconButton(
+                  icon: const Icon(Icons.arrow_forward_rounded),
+                  color: Colors.white,
+                  onPressed: () => AuthService.signOut().then((value) => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()))),
+                )
+              )
               ]))
         ])));
   }

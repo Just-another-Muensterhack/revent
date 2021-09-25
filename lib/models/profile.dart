@@ -78,7 +78,7 @@ class Profile {
         .catchError((error) => print("Failed to delete Profile: $error"));
   }
 
-  static Future<Profile> create(birthday) async {
+  static Future<Profile> create(DateTime birthday, [ String username ]) async {
     String profilePicture = FirebaseAuth.instance.currentUser.photoURL;
 
     if (profilePicture.isEmpty) {
@@ -87,8 +87,12 @@ class Profile {
           "revent-assets/main/default_profile_picture.png"; // change later
     }
 
+    if( username.isEmpty ){
+      username = FirebaseAuth.instance.currentUser.displayName;
+    }
+
     Profile profile = Profile._(
-        FirebaseAuth.instance.currentUser.displayName,
+        username,
         profilePicture,
         birthday);
     profile.save();

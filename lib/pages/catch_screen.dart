@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:revent/models/commons.dart';
-// import 'package:revent/widgets/image_appbar.dart';
 import 'package:revent/models/event.dart';
 import 'package:revent/widgets/event_item.dart';
-
-Future<List<Event>> events = Future.wait([
-  Event.create(null, "A", "desc_A", DateTime.now(), <Genre>[], Price.cheap, "https://picsum.photos/200", null, "https://example.org"),
-  Event.create(null, "B", "desc_B", DateTime.now(), <Genre>[], Price.cheap, "https://picsum.photos/200", null, "https://example.org"),
-  Event.create(null, "C", "desc_C", DateTime.now(), <Genre>[], Price.cheap, "https://picsum.photos/200", null, "https://example.org"),
-]);
 
 class CatchPage extends StatefulWidget {
   _CatchPageState createState() => _CatchPageState();
@@ -22,7 +14,7 @@ class _CatchPageState extends State<CatchPage> {
 
   @override
   void initState() {
-    events
+    Event.getEvents()
       .then((List<Event> events) {
         setState(() {
           _isReady = true;

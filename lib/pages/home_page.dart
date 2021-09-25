@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:revent/main.dart';
 import 'package:revent/models/commons.dart';
+import 'package:revent/pages/catch_screen.dart';
 import 'package:revent/pages/map_page.dart';
-import 'package:revent/pages/explore_page.dart';
 import 'package:revent/pages/profile_page.dart';
+import 'package:revent/services/auth_service.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -77,7 +78,7 @@ Widget _getWidgetOptions(int index, BuildContext context) {
         ),
       );
     case 1:
-      return ExplorePage();
+      return CatchPage();
     case 2:
       return MapPage();
     case 3:
@@ -101,7 +102,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: primary,
         elevation: 0.0,
-        leading: IconButton(onPressed: () => null, icon: Icon(Icons.menu)),
+        leading: IconButton(
+            onPressed: () async => (AuthService.signInWithGoogle()),
+            icon: Icon(Icons.menu)),
         title: Center(
           child: Text(
             "revent",
@@ -111,7 +114,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () => null,
+            onPressed: () async {
+              //TODO test here
+            },
           )
         ],
       ),

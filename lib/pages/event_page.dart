@@ -29,7 +29,7 @@ class _EventHeaderState extends State<_EventHeader> {
         padding: EdgeInsets.all(15),
         height: MediaQuery.of(context).size.height * 0.4,
         decoration: BoxDecoration(
-          color: const Color(0x000000),
+          color: Colors.black,
           image: DecorationImage(
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
@@ -71,29 +71,8 @@ class _EventContainerState extends State<_EventContainer> {
     }
   }
 
-  final SizedBox _spacer = SizedBox(
-    height: 10,
-  );
-
   final TextStyle _header1Style = new TextStyle(
     fontSize: 25.0,
-  );
-
-  final TextStyle _infoStyle = new TextStyle(
-    color: Colors.white,
-    fontSize: 15,
-    fontFamily: "Poppins",
-  );
-
-  final TextStyle _genericText = new TextStyle(
-    color: Colors.white,
-    fontFamily: "Poppins",
-  );
-
-  final TextStyle _textButtonText = new TextStyle(
-    color: Colors.deepPurpleAccent,
-    fontSize: 10,
-    fontFamily: "Poppins",
   );
 
   @override

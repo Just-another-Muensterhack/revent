@@ -34,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () => AuthService.signInWithGoogle()
                     .then((value) => this._goToHomePage(context)),
               ),
+              /*
               Container(
                 height: 10.0,
               ),
@@ -54,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                 text: "E-Mail",
                 onPressed: () => AuthService.signInAnonymously()
                     .then((value) => this._goToHomePage(context)),
-              ),
+              ),*/
             ],
           ),
         ));

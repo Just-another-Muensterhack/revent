@@ -25,11 +25,11 @@ class _EventCardState extends State<EventCard> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: const Color(0x000000),
+              color: Colors.black,
               image: DecorationImage(
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.8),
+                  Colors.black.withOpacity(0.35),
                   BlendMode.dstATop,
                 ),
                 image: NetworkImage(widget.event.imgURL),
@@ -58,24 +58,6 @@ class _EventCardState extends State<EventCard> {
                   ),
                 ),
               ],
-            ),
-          ),
-
-          Container(
-            alignment: Alignment.topRight,
-            padding: EdgeInsets.only(
-              top: 12.5,
-            ),
-            child: RawMaterialButton(
-              onPressed: widget.actionClick,
-              elevation: 1.5,
-              fillColor: Colors.white,
-              child: Icon(
-                widget.actionIcon.icon,
-                size: 15.0,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-              shape: CircleBorder(),
             ),
           ),
         ],

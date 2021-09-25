@@ -20,8 +20,8 @@ Widget _getWidgetOptions(int index, BuildContext context) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              flex: 1,
+            Container(
+              height: 36,
               child: Align(
                 alignment: Alignment.topLeft,
                 child: ListView.builder(
@@ -30,12 +30,18 @@ Widget _getWidgetOptions(int index, BuildContext context) {
                   itemBuilder: (context, index) {
                     Genre genre = Genre.values[index];
 
-                    return Chip(
-                      avatar: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: const Text("AB"),
-                      ),
-                      label: Text(genre.toString().substring(6,7).toUpperCase() + genre.toString().substring(7)),
+                    return Container(
+                      padding: const EdgeInsets.all(4.0),
+                      height: 8,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+                        height: 8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromRGBO(130, 81, 202, 1.0),
+                        ),
+                        child: Center(child: Text(genre.toString().substring(6, 7).toUpperCase() + genre.toString().substring(7), style: TextStyle(fontWeight: FontWeight.w700)))
+                      )
                     );
                   },
                   scrollDirection: Axis.horizontal,

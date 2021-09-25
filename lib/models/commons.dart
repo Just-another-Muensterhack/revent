@@ -12,11 +12,6 @@ enum Genre {
   music,
   art,
   theater,
-  asd,
-  asdasd,
-  asdasdasd,
-  asdasdasdasd,
-  asdasdasdasdasd,
 }
 
 // Request generally used for friendrequests or catches

@@ -2,13 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:revent/main.dart';
-import 'package:revent/models/commons.dart';
 import 'package:revent/pages/catch_screen.dart';
 import 'package:revent/pages/explore_page.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
-import 'package:revent/widgets/generic_list.dart';
-import 'package:revent/services/auth_service.dart';
 import 'package:revent/widgets/floating_navbar.dart';
 
 class HomePage extends StatefulWidget {

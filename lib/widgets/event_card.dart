@@ -60,6 +60,7 @@ class _EventCardState extends State<EventCard> {
               ],
             ),
           ),
+
           Container(
             alignment: Alignment.topRight,
             padding: EdgeInsets.only(

@@ -38,32 +38,35 @@ class LandingPage extends StatelessWidget {
             Container(
               height: 100.0,
             ),
-            TextButton(
-              child: const Text(
-                "wanna start?",
-                style: TextStyle(
-                  fontFamily: "Poppins",
-                  color: Colors.white,
-                  fontSize: 20.0,
-                ),
-              ),
-              autofocus: true,
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(
-                  EdgeInsets.fromLTRB(175.0, 25.0, 175.0, 25.0),
-                ),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(900.0),
-                    side: BorderSide(color: secondary),
+            Container(
+              width: 200.0,
+              child: TextButton(
+                child: const Text(
+                  "wanna start?",
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    color: Colors.white,
+                    fontSize: 20.0,
                   ),
                 ),
-                foregroundColor: MaterialStateProperty.all(Colors.white),
-              ),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginPage(),
+                autofocus: true,
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(
+                    EdgeInsets.all(25.0),
+                  ),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(900.0),
+                      side: BorderSide(color: secondary),
+                    ),
+                  ),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                ),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ),
                 ),
               ),
             ),

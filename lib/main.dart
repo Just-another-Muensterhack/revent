@@ -3,11 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:revent/pages/home_page.dart';
-//import 'package:revent/pages/landing_page.dart';
+import 'package:revent/pages/landing_page.dart';
 import 'package:revent/pages/splash_screen.dart';
 import 'package:revent/services/auth_service.dart';
 
 const String AppTitle = "revent";
+
 const Color primary = Color.fromRGBO(31, 38, 49, 1.0);
 const Color secondary = Color.fromRGBO(130, 81, 202, 1.0);
 
@@ -20,15 +21,13 @@ void main() {
     MaterialApp(
       title: AppTitle,
       theme: themeData.copyWith(
-        colorScheme: themeData.colorScheme.copyWith(
-          primary: primary,
-          secondary: secondary,
-        ),
-        textTheme: ThemeData.dark().textTheme.apply(
-          fontFamily: 'Poppins',
-          bodyColor: Colors.white
-        )
-      ),
+          colorScheme: themeData.colorScheme.copyWith(
+            primary: primary,
+            secondary: secondary,
+          ),
+          textTheme: ThemeData.dark()
+              .textTheme
+              .apply(fontFamily: 'Poppins', bodyColor: Colors.white)),
       home: App(),
       debugShowCheckedModeBanner: false,
     ),
@@ -40,7 +39,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  bool _initialized = false; // TODO CHANGE
+  bool _initialized = false;
   bool _error = false;
 
   Widget _currentPage = SplashScreen();
@@ -88,6 +87,26 @@ class _AppState extends State<App> {
       return SplashScreen();
     }
 
-    return _currentPage;
+    return Container(
+      color: primary.withOpacity(0.75),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            constraints: BoxConstraints(
+              maxWidth: 550,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                8.0,
+              ),
+              color: primary,
+            ),
+            child: _currentPage,
+          ),
+        ],
+      ),
+    );
   }
 }

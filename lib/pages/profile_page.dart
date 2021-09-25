@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:revent/models/profile.dart';
 import 'package:revent/services/auth_service.dart';
+import 'package:revent/widgets/custom_button.dart';
 
 class ProfilePage extends StatefulWidget {
   @override

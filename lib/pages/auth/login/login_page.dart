@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:revent/constants/colors.dart';
+import 'package:revent/pages/auth/login/data_page.dart';
 import 'package:revent/pages/home_page.dart';
 import 'package:revent/services/auth_service.dart';
 
@@ -14,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   void _goToHomePage(BuildContext context) {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => DataPage(),
       ),
     );
   }

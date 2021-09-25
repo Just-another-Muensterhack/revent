@@ -38,6 +38,7 @@ dependencies:
   cloud_functions: "^3.0.3"
 
   flutter_signin_button: "^2.0.0"
+  qr_flutter: "^4.0.0"
 
 dev_dependencies:
   flutter_test:

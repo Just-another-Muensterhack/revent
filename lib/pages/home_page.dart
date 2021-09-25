@@ -6,6 +6,7 @@ import 'package:revent/models/commons.dart';
 import 'package:revent/pages/catch_screen.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
+import 'package:revent/widgets/generic_list.dart';
 import 'package:revent/services/auth_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -114,8 +115,19 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () async {
-              //TODO test here
+            onPressed: () {
+              List<int> list = [1, 2, 3, 5, 0];
+              Function builder = (element) => element.toString();
+
+              Navigator.of(context)
+                  .push(
+                    MaterialPageRoute(
+                      builder: (context) => GenericList<int>(list, builder),
+                    ),
+                  )
+                  .then(
+                    (value) => print(value),
+                  );
             },
           )
         ],

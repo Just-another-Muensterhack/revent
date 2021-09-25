@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:revent/constants/colors.dart';
 import 'package:revent/models/commons.dart';
+import 'package:revent/models/profile.dart';
 import 'package:revent/pages/home_page.dart';
 
 class DataPage extends StatefulWidget {
@@ -20,14 +21,20 @@ class _DataPageState extends State<DataPage> {
   Future<void> _selectBirthDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
         context: context,
-        initialDate: selectedDate,
+        initialDate: DateTime.now(),
         firstDate: DateTime(1900, 0, 0),
         lastDate: DateTime.now());
     if (picked != null)
       setState(() {
+        selectedDate = picked;
         txt.text = "$picked".split(" ")[0];
       });
-}
+  }
+
+  Future<void> _createUser() async {
+    print("Create User" + selectedDate.toIso8601String() + displayName);
+    await Profile.create(selectedDate, displayName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,12 +150,15 @@ class _DataPageState extends State<DataPage> {
                     ),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                   ),
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(),
-                    ),
-                  )
+                  onPressed: () {
+                    _createUser()
+                      .then((value) => Navigator.push(context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ),
+                      )
+                    );
+                  }
                 )
               ),
             ],

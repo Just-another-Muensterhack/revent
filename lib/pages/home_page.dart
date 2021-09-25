@@ -7,6 +7,7 @@ import 'package:revent/pages/catch_screen.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
 import 'package:revent/widgets/generic_list.dart';
+import 'package:revent/services/auth_service.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -98,7 +99,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: primary,
         elevation: 0.0,
-        leading: IconButton(onPressed: () => null, icon: Icon(Icons.menu)),
+        leading: IconButton(
+            onPressed: () async => (AuthService.signInWithGoogle()),
+            icon: Icon(Icons.menu)),
         title: Center(
           child: Text(
             "revent",

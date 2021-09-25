@@ -6,6 +6,7 @@ import 'package:revent/models/commons.dart';
 import 'package:revent/pages/catch_screen.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
+import 'package:revent/services/auth_service.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -35,7 +36,9 @@ Widget _getWidgetOptions(int index, BuildContext context) {
                         backgroundColor: Colors.white,
                         child: const Text("AB"),
                       ),
-                      label: Text(genre.toString().substring(6,7).toUpperCase() + genre.toString().substring(7)),
+                      label: Text(
+                          genre.toString().substring(6, 7).toUpperCase() +
+                              genre.toString().substring(7)),
                     );
                   },
                   scrollDirection: Axis.horizontal,
@@ -95,7 +98,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: primary,
         elevation: 0.0,
-        leading: IconButton(onPressed: () => null, icon: Icon(Icons.menu)),
+        leading: IconButton(
+            onPressed: () async => (AuthService.signInWithGoogle()),
+            icon: Icon(Icons.menu)),
         title: Center(
           child: Text(
             "revent",
@@ -105,7 +110,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () => null,
+            onPressed: () async {
+              //TODO test here
+            },
           )
         ],
       ),

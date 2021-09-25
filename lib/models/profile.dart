@@ -7,7 +7,7 @@ import 'package:revent/models/friend.dart';
 
 class Profile {
   String userUID = ""; // profile uuid
-  String databaseID= "";
+  String databaseID = "";
 
   DateTime birthday; // age verification
   DateTime registrated;
@@ -19,10 +19,10 @@ class Profile {
   String qrToken = "";
 
   static final _databaseRef =
-      FirebaseFirestore.instance.collection('profiles').withConverter<Profile>(
-            fromFirestore: (snapshot, _) => Profile._fromJson(snapshot.data()),
-            toFirestore: (profile, _) => profile._toJson(),
-          );
+  FirebaseFirestore.instance.collection('profiles').withConverter<Profile>(
+    fromFirestore: (snapshot, _) => Profile._fromJson(snapshot.data()),
+    toFirestore: (profile, _) => profile._toJson(),
+  );
 
   Profile._(this.displayName, this.profileURL, this.birthday) {
     this.userUID = FirebaseAuth.instance.currentUser.uid;
@@ -82,8 +82,10 @@ class Profile {
   static Future<Profile> create(birthday) async {
     String profilePicture = FirebaseAuth.instance.currentUser.photoURL;
 
-    if(profilePicture.isEmpty){
-      profilePicture = "https://raw.githubusercontent.com/Just-another-Muensterhack/revent-assets/main/default_profile_picture.png" // change later
+    if (profilePicture.isEmpty) {
+      profilePicture =
+          "https://raw.githubusercontent.com/Just-another-Muensterhack/" +
+          "revent-assets/main/default_profile_picture.png"; // change later
     }
 
     Profile profile = Profile._(

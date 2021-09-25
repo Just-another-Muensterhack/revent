@@ -61,15 +61,27 @@ class _ProfilePageState extends State<ProfilePage> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(25))),
-                                      child: Container(
-                                        width: 250,
-                                        height: 250,
-                                        child: Center(
-                                          child: QrImage(
-                                            data: "",
-                                            version: QrVersions.auto,
-                                            size: 200.0,
-                                          ))));
+                                      child: SingleChildScrollView(child: Container(
+                                        width: 500,
+                                        height: 365,
+                                        child: Column(children: <Widget>[
+                                          Center(
+                                            child: Padding(padding: EdgeInsets.only(top:25, left:25, right: 25, bottom: 15),
+                                              child: QrImage(
+                                              data: "XEMSq8VUjj",
+                                              version: QrVersions.auto,
+                                              size: 200.0,)
+                                          )),
+                                          Padding(padding: EdgeInsets.only(bottom: 15),
+                                            child: Center(child: Text("XEMSq8VUjj", style: TextStyle(color: Colors.black),)),),
+                                          Padding(padding: EdgeInsets.only(left: 25, right: 25),
+                                            child: CustomButton(buttonText: "Copy", onPress: (){
+                                              Clipboard.setData(ClipboardData(text: "XEMSq8VUjj"));
+                                            },),
+                                          )
+                                          ],
+                                        )
+                                      )));
                                 },
                                 context: context);
                             },

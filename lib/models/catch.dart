@@ -9,8 +9,10 @@ class Catch {
   String owner = "";
   List<String> events = [];
   List<Member> members = [];
-  DateTime time = DateTime(0);
+  DateTime time = DateTime(2000);
   Location place = Location("", 0, "", "", "");
+  String title = "";
+  String description ="";
 
   // database connection via json serialize and deserialize
   static final _databaseRef =
@@ -23,6 +25,8 @@ class Catch {
 
   // deserialize
   Catch._fromJson(Map<String, Object> json) {
+    this.title = json['title'] as String;
+    this.description = json['description'] as String;
     this.owner = json['owner'] as String;
     this.events = (json['events'] as List<dynamic>)
         .map((element) => element as String)
@@ -37,6 +41,8 @@ class Catch {
   // serialization
   Map<String, Object> _toJson() {
     return {
+      'title': this.title,
+      'description': this.description,
       'owner': this.owner,
       'events': this.events,
       'members': this.members.map((Member e) => e.toJson()).toList(),
@@ -72,7 +78,9 @@ class Catch {
 
   // static create
   static Future<Catch> create(events) async {
-    Catch event = Catch._(FirebaseAuth.instance.currentUser.uid, events);
+    //Catch event = Catch._(FirebaseAuth.instance.currentUser.uid, events);
+    Catch event = Catch._("Vroa711tSefhth7WzVsCSTSQPt22", events);
+
     event.save();
 
     return event;

@@ -110,7 +110,8 @@ class Profile {
     return this.friends.where((element) => element.status == type).toList();
   }
 
-  static Future<Profile> getByReference(String userUID) async {
+  static Future<Profile> getByReference({String userUID}) async {
+    if (userUID == null) userUID = FirebaseAuth.instance.currentUser.uid;
     Profile profile;
     await _databaseRef
         .where('user_uid', isEqualTo: userUID)

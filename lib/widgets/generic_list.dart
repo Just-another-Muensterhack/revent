@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GenericList<T> extends StatefulWidget {
-  List<T> _list;
-  String Function(T elm) _builder;
+  final List<T> _list;
+  final String Function(T elm) _builder;
 
   GenericList(this._list, this._builder);
 

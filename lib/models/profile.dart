@@ -11,6 +11,8 @@ class Profile {
 
   DateTime birthday; // age verification
   DateTime registrated;
+  String displayName = "";
+  String profileURL = "";
 
   List<Genre> favorites;
   List<Friend> friends = [];
@@ -22,7 +24,7 @@ class Profile {
             toFirestore: (profile, _) => profile._toJson(),
           );
 
-  Profile._(this.birthday) {
+  Profile._(this.displayName, this.profileURL, this.birthday) {
     this.userUID = FirebaseAuth.instance.currentUser.uid;
     this.registrated = DateTime.now();
     this.generateToken();
@@ -33,6 +35,8 @@ class Profile {
     this.databaseID = json['id'] as String;
     this.registrated = (json['registrated'] as Timestamp).toDate();
     this.birthday = (json['birthday'] as Timestamp).toDate();
+    this.displayName = json['display_name'] as String;
+    this.profileURL = json['profile_url'] as String;
     this.qrToken = json['qr_tokens'] as String;
 
     this.friends = (json['friends'] as List<dynamic>)
@@ -49,6 +53,8 @@ class Profile {
       'user_uid': this.userUID,
       'registrated': this.registrated,
       'birthday': this.birthday,
+      'display_name': this.displayName,
+      'profile_url': this.profileURL,
       'qr_tokens': this.qrToken,
       'friends': this.friends.map((Friend e) => e.toJson()).toList(),
       'favorites': this.favorites.map((e) => e.index).toList(),
@@ -74,7 +80,10 @@ class Profile {
   }
 
   static Future<Profile> create(birthday) async {
-    Profile profile = Profile._(birthday);
+    Profile profile = Profile._(
+        FirebaseAuth.instance.currentUser.displayName,
+        FirebaseAuth.instance.currentUser.photoURL,
+        birthday);
     profile.save();
 
     return profile;

@@ -32,7 +32,6 @@ class Profile {
 
   Profile._fromJson(Map<String, Object> json) {
     this.userUID = json['user_uid'] as String;
-    this.databaseID = json['id'] as String;
     this.registrated = (json['registrated'] as Timestamp).toDate();
     this.birthday = (json['birthday'] as Timestamp).toDate();
     this.displayName = json['display_name'] as String;

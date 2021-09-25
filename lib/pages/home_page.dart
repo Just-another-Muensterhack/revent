@@ -6,6 +6,7 @@ import 'package:revent/models/commons.dart';
 import 'package:revent/pages/catch_screen.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
+import 'package:revent/widgets/generic_list.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -35,7 +36,9 @@ Widget _getWidgetOptions(int index, BuildContext context) {
                         backgroundColor: Colors.white,
                         child: const Text("AB"),
                       ),
-                      label: Text(genre.toString().substring(6,7).toUpperCase() + genre.toString().substring(7)),
+                      label: Text(
+                          genre.toString().substring(6, 7).toUpperCase() +
+                              genre.toString().substring(7)),
                     );
                   },
                   scrollDirection: Axis.horizontal,
@@ -105,7 +108,20 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () => null,
+            onPressed: () {
+              List<int> list = [1, 2, 3, 5, 0];
+              Function builder = (element) => element.toString();
+
+              Navigator.of(context)
+                  .push(
+                    MaterialPageRoute(
+                      builder: (context) => GenericList<int>(list, builder),
+                    ),
+                  )
+                  .then(
+                    (value) => print(value),
+                  );
+            },
           )
         ],
       ),

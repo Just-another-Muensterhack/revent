@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:revent/constants/colors.dart';
 import 'package:revent/models/commons.dart';
-import 'package:revent/pages/auth/login/select_interests_page.dart';
 
 class DataPage extends StatefulWidget {
   @override
@@ -37,7 +36,7 @@ class _DataPageState extends State<DataPage> {
                 ),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => SelectInterestsPage(),
+                    builder: (context) => null,
                   ),
                 ),
               ),

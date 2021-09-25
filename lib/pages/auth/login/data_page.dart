@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:revent/constants/colors.dart';
 import 'package:revent/models/commons.dart';
 import 'package:revent/pages/auth/login/select_interests_page.dart';
+import 'package:revent/pages/home_page.dart';
 
 class DataPage extends StatefulWidget {
   @override
@@ -59,9 +60,15 @@ class _DataPageState extends State<DataPage> {
                   labelStyle: TextStyle(
                     color: Colors.white54
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0))
+                  hintStyle: TextStyle(
+                    color: Colors.white54
                   ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(20.0)
+                    ),
+                  ),
+
                   //icon: Icon(Icons.title),
                   hintText: "Choose your display name!",
                   labelText: "Display Name *",
@@ -72,7 +79,7 @@ class _DataPageState extends State<DataPage> {
               ),
               TextField(
                 controller: txt,
-                cursorColor: Colors.white,
+                readOnly: true,
                 decoration: InputDecoration(
                   labelStyle: TextStyle(
                       color: Colors.white54
@@ -80,8 +87,6 @@ class _DataPageState extends State<DataPage> {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0))
                   ),
-                  //icon: Icon(Icons.title),
-                  hintText: "Choose your display name!",
                   labelText: "Your Birthday *",
                 ),
                 onTap: () {
@@ -100,10 +105,12 @@ class _DataPageState extends State<DataPage> {
                   labelStyle: TextStyle(
                       color: Colors.white54
                   ),
+                  hintStyle: TextStyle(
+                    color: Colors.white54
+                  ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20.0))
                   ),
-                  //icon: Icon(Icons.title),
                   hintText: "Choose your favorite genres!",
                   labelText: "Favorites",
                 ),
@@ -112,6 +119,40 @@ class _DataPageState extends State<DataPage> {
                     builder: (context) => SelectInterestsPage(),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: TextButton(
+                  child: Text(
+                    "Sign UP!",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  autofocus: true,
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.all(25.0),
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(900.0),
+                        side: BorderSide(color: secondary),
+                      ),
+                    ),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                  ),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  )
+                )
               ),
             ],
           ),

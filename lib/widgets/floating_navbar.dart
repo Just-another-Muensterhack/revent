@@ -44,7 +44,17 @@ class FloatingNavbar extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(48, 0, 48, 0),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(28.0),
-                    color: Color.fromRGBO(130, 81, 202, 1.0)),
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment(1.0, 0.0), // 10% of the width, so there are ten blinds.
+                        colors: const <Color>[
+
+                          Color.fromARGB(150, 176, 128, 248),
+                          Color.fromARGB(125, 130,  81, 202),
+                          Color.fromARGB(100, 165, 131, 215),
+                        ],
+                        tileMode: TileMode.repeated
+                    )),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: items

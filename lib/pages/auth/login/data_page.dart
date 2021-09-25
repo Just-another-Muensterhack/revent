@@ -114,7 +114,7 @@ class _DataPageState extends State<DataPage> {
                 ),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => SelectInterestsPage(),
+                    builder: (context) => null,
                   ),
                 ),
               ),

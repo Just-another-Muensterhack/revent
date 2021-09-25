@@ -7,6 +7,8 @@ import 'package:revent/pages/explore_page.dart';
 import 'package:revent/pages/map_page.dart';
 import 'package:revent/pages/profile_page.dart';
 import 'package:revent/widgets/floating_navbar.dart';
+import 'package:revent/services/auth_service.dart';
+import 'package:revent/services/search_service.dart';
 
 class HomePage extends StatefulWidget {
   @override

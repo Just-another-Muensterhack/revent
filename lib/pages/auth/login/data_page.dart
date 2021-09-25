@@ -163,7 +163,7 @@ class _DataPageState extends State<DataPage> {
               Center(
                   child: TextButton(
                       child: Text(
-                        "Sign UP!",
+                        "Lets celebrate!",
                         style: TextStyle(
                           fontFamily: "Poppins",
                           color: Colors.white,

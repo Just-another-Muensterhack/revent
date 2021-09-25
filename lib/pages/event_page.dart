@@ -193,7 +193,7 @@ class _EventContainerState extends State<_EventContainer> {
                           " " +
                           this.event.eventLocation.houseNumber),
                       subtitle: Text(
-                          this.event.eventLocation.postalCode.toString() +
+                          this.event.eventLocation.postalCode +
                               " " +
                               this.event.eventLocation.city +
                               ", " +

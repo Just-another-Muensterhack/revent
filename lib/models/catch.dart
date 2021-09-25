@@ -10,7 +10,7 @@ class Catch {
   List<String> events = [];
   List<Member> members = [];
   DateTime time = DateTime(2000);
-  Location place = Location("", 0, "", "", "");
+  Location place = Location("", "00000", "", "", "");
   String title = "";
   String description ="";
 

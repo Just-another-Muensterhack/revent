@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:revent/main.dart';
 import 'package:revent/models/commons.dart';
+import 'package:revent/pages/catch_screen.dart';
 import 'package:revent/pages/map_page.dart';
-import 'package:revent/pages/explore_page.dart';
 import 'package:revent/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -71,7 +71,7 @@ Widget _getWidgetOptions(int index, BuildContext context) {
         ),
       );
     case 1:
-      return ExplorePage();
+      return CatchPage();
     case 2:
       return MapPage();
     case 3:

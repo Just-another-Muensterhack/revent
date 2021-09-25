@@ -120,7 +120,17 @@ class _ProfilePageState extends State<ProfilePage> {
               Container(
                 width: size.width * 0.8,
                 decoration: BoxDecoration(
-                    color: Colors.deepPurpleAccent,
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment(1.0, 0.0), // 10% of the width, so there are ten blinds.
+                        colors: const <Color>[
+
+                          Colors.deepPurpleAccent,
+                          Color.fromARGB(150, 176, 128, 248),
+                          Colors.deepPurpleAccent,
+                        ],
+                        tileMode: TileMode.repeated
+                    ),
                     borderRadius: BorderRadius.circular(25)),
                 child: AuthService.currentUserExists() &&
                     AuthService
@@ -255,7 +265,17 @@ class _ProfilePageState extends State<ProfilePage> {
               Container(
                   width: size.width * 0.8,
                   decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment(1.0, 0.0), // 10% of the width, so there are ten blinds.
+                          colors: const <Color>[
+
+                            Colors.deepPurpleAccent,
+                            Color.fromARGB(150, 176, 128, 248),
+                            Colors.deepPurpleAccent,
+                          ],
+                          tileMode: TileMode.repeated
+                      ),
                       borderRadius: BorderRadius.circular(25)),
                   child: Column(children: <Widget>[
                     ListTile(

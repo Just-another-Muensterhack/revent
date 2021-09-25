@@ -41,7 +41,16 @@ Widget _getWidgetOptions(int index, BuildContext context) {
                         height: 8,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color.fromRGBO(130, 81, 202, 1.0),
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment(1.0, 0.0),
+                              colors: const <Color>[
+
+                                Color.fromARGB(150, 176, 128, 248),
+                                Color.fromARGB(125, 130,  81, 202),
+                              ],
+                              tileMode: TileMode.repeated
+                          )
                         ),
                         child: Center(child: Text(genre.toString().substring(6, 7).toUpperCase() + genre.toString().substring(7), style: TextStyle(fontWeight: FontWeight.w700)))
                       )
@@ -67,7 +76,8 @@ Widget _getWidgetOptions(int index, BuildContext context) {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Container(
-                            color: Colors.white12,
+                            decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.white54, Colors.white12])),
+                            //color: Colors.white12,
                             height: MediaQuery.of(context).size.height * 0.5,
                             width: MediaQuery.of(context).size.width * 0.8,
                           ),

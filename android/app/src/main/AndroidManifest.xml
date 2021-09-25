@@ -3,6 +3,8 @@
    <application
         android:label="revent"
         android:icon="@mipmap/launcher_icon">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyConVByuX-OTlVaxVqs4ukiP1etj-lFXMQ"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -31,11 +31,13 @@ dependencies:
   # Firebase dependencies
   firebase_core: "^1.5.0"
   firebase_auth: "^3.0.2"
-  google_sign_in: "^4.5.1"
+  google_sign_in: ^5.1.1
   github_sign_in: "^0.0.1"
   firebase_analytics: "^8.3.0"
   cloud_firestore: "^2.5.0"
   cloud_functions: "^3.0.3"
+  google_maps_flutter: ^2.0.10
+  google_maps_flutter_web: ^0.3.1
 
   flutter_signin_button: "^2.0.0"
 

@@ -114,15 +114,14 @@ class Profile {
   static Future<bool> profileExists({String userUID}) async {
     if (userUID == null) userUID = FirebaseAuth.instance.currentUser.uid;
 
-    await _databaseRef
+    QuerySnapshot<Profile> value = await _databaseRef
         .where('user_uid', isEqualTo: userUID)
         .limit(1)
-        .get()
-        .then((value) {
-      if (value != null) {
-        return true;
-      }
-    });
+        .get();
+
+    if(value.docs.isNotEmpty) {
+      return true;
+    }
 
     return false;
   }

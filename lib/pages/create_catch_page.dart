@@ -52,26 +52,9 @@ class _CreateCatchPageState extends State<CreateCatchPage> {
         return true;
       },
       child: Scaffold(
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.white12,
-          child: Padding(
-            child: TextButton(
-              child: Text(
-                "Create Catch",
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () async {
-                Catch cat = await Catch.create(
-                    widget.events.map((e) => e.databaseID).toList());
-                cat.time = DateTime(_dateTime.year, _dateTime.month,
-                    _dateTime.day, _timeOfDay.hour, _timeOfDay.minute);
-                cat.title = _title;
-                cat.description = _description;
-                await cat.save();
-              },
-            ),
-            padding: EdgeInsets.all(20),
-          ),
+        appBar: AppBar(
+          backgroundColor: secondary,
+          title: Text("Catching..."),
         ),
         backgroundColor: primary,
         body: ListView(
@@ -172,6 +155,22 @@ class _CreateCatchPageState extends State<CreateCatchPage> {
                           ));*/
                     }),
               ),
+            ),
+            Expanded(child: Container()),
+            TextButton(
+              child: Text(
+                "Create Catch",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () async {
+                Catch cat = await Catch.create(
+                    widget.events.map((e) => e.databaseID).toList());
+                cat.time = DateTime(_dateTime.year, _dateTime.month,
+                    _dateTime.day, _timeOfDay.hour, _timeOfDay.minute);
+                cat.title = _title;
+                cat.description = _description;
+                await cat.save();
+              },
             ),
           ],
         ),

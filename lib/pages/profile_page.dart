@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:revent/constants/colors.dart';
 import 'package:revent/models/profile.dart';
 import 'package:revent/pages/landing_page.dart';
 import 'package:revent/services/auth_service.dart';
@@ -98,9 +99,9 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             Container(height: 20.0),
             Container(
-              width: size.width * 0.8,
+              width: size.width * 0.9,
               decoration: BoxDecoration(
-                  color: Colors.deepPurpleAccent,
+                  color: secondary,
                   borderRadius: BorderRadius.circular(25)),
               child: AuthService.currentUserExists() &&
                       AuthService.currentUser().photoURL != null
@@ -222,9 +223,9 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Container(height: 40),
             Container(
-              width: size.width * 0.8,
+              width: size.width * 0.9,
               decoration: BoxDecoration(
-                  color: Colors.deepPurpleAccent,
+                  color: secondary,
                   borderRadius: BorderRadius.circular(25)),
               child: Column(
                 children: <Widget>[

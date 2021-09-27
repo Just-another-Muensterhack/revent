@@ -83,7 +83,6 @@ class _EventContainerState extends State<_EventContainer> {
     return Container(
       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.3),
       alignment: Alignment.topLeft,
-      padding: EdgeInsets.only(top: 10, left: 20, right: 20),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.only(
@@ -95,11 +94,6 @@ class _EventContainerState extends State<_EventContainer> {
           ? ListView(
               shrinkWrap: true,
               children: [
-                Container(
-                  padding: EdgeInsets.only(
-                    top: 15.0,
-                  ),
-                ),
                 ListTile(
                   leading: IconButton(
                     icon: Icon(
@@ -212,32 +206,20 @@ class _EventContainerState extends State<_EventContainer> {
                     },
                   ),
                 ),
-                Center(
-                  child: Container(
-                    width: 200.0,
-                    child: TextButton(
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(
+                    child: OutlinedButton(
                       child: const Text(
                         "catch it!",
                         style: TextStyle(
-                          fontFamily: "Poppins",
-                          color: Colors.white,
                           fontSize: 20.0,
+                          color: Colors.white,
                         ),
                       ),
                       autofocus: true,
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                          EdgeInsets.all(25.0),
-                        ),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(900.0),
-                            side: BorderSide(color: secondary),
-                          ),
-                        ),
-                        foregroundColor:
-                            MaterialStateProperty.all(Colors.white),
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(width: 1.0, color: secondary),
                       ),
                       onPressed: () => Navigator.push(
                         context,

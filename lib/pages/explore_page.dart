@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revent/models/commons.dart';
 import 'package:revent/models/event.dart';
+import 'package:revent/pages/create_catch_page.dart';
 import 'package:revent/pages/event_page.dart';
 import 'package:revent/services/search_service.dart';
 import 'package:revent/widgets/event_card.dart';
@@ -29,57 +30,54 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+      padding: EdgeInsets.fromLTRB(10, 15, 10, 0),
       child: ListView(
         children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(25, 0, 25, 10),
-            child: TextField(
-              controller: txt,
-              decoration: new InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(130, 81, 202, 1.0), width: 4.0),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
-                      color: Color.fromRGBO(130, 81, 202, 1.0), width: 4.0),
-                ),
-                prefixIcon: Padding(
-                  padding: EdgeInsets.fromLTRB(18, 0, 12, 0),
-                  child: Icon(Icons.search, color: Colors.white),
-                ),
-                hintText: "Search",
-                hintStyle: TextStyle(color: Colors.white),
-                suffixIcon: IconButton(
-                  padding: EdgeInsets.only(right: 10.0),
-                  onPressed: () async {
-                    this._fetchEvents();
-                    txt.clear();
-                  },
-                  icon: Icon(Icons.clear, color: Colors.white),
-                ),
+          TextField(
+            controller: txt,
+            decoration: new InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                    color: Color.fromRGBO(130, 81, 202, 1.0), width: 4.0),
               ),
-              cursorColor: Colors.white,
-              textInputAction: TextInputAction.go,
-              onSubmitted: (term) {
-                print(term);
-                SearchService.searchEvent(term, []).then((ids) {
-                  this._events = [];
-
-                  ids.forEach((id) async {
-                    Event event = await Event.getByReference(id);
-                    _events.add(event);
-                    setState(() {});
-                  });
-                });
-              },
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                    color: Color.fromRGBO(130, 81, 202, 1.0), width: 4.0),
+              ),
+              prefixIcon: Padding(
+                padding: EdgeInsets.fromLTRB(18, 0, 12, 0),
+                child: Icon(Icons.search, color: Colors.white),
+              ),
+              hintText: "Search",
+              hintStyle: TextStyle(color: Colors.white),
+              suffixIcon: IconButton(
+                padding: EdgeInsets.only(right: 10.0),
+                onPressed: () async {
+                  this._fetchEvents();
+                  txt.clear();
+                },
+                icon: Icon(Icons.clear, color: Colors.white),
+              ),
             ),
+            cursorColor: Colors.white,
+            textInputAction: TextInputAction.go,
+            onSubmitted: (term) {
+              print(term);
+              SearchService.searchEvent(term, []).then((ids) {
+                this._events = [];
+
+                ids.forEach((id) async {
+                  Event event = await Event.getByReference(id);
+                  _events.add(event);
+                  setState(() {});
+                });
+              });
+            },
           ),
+          Container(height: 10),
           Container(
-            padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
             height: 36,
             child: Align(
               alignment: Alignment.topLeft,
@@ -114,51 +112,54 @@ class _ExplorePageState extends State<ExplorePage> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  height: 25.0,
-                ),
-                Text(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(25.0),
+                child: Text(
                   "Events",
                   textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 27.5,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                this._events.isEmpty
-                    ? Center(child: Text("No events found."))
-                    : Padding(
-                        padding: EdgeInsets.all(25),
-                        child: SizedBox(
-                          height: 500.0,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: this._events.length,
-                            itemBuilder: (context, index) {
-                              Event event = this._events[index];
+              ),
+              this._events.isEmpty
+                  ? Center(child: Text("No events found."))
+                  : SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.45,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: this._events.length,
+                        itemBuilder: (context, index) {
+                          Event event = this._events[index];
 
-                              return Container(
-                                width: 400,
-                                height: 500,
-                                padding: EdgeInsets.only(right: 40.0),
-                                child: InkWell(
-                                  onTap: () => Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => EventPage(event),
-                                    ),
-                                  ),
-                                  child: EventCard(event),
+                          return Container(
+                            width: MediaQuery.of(context).size.width * 0.75,
+                            padding: EdgeInsets.only(right: 20.0),
+                            child: InkWell(
+                              onDoubleTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      CreateCatchPage([event]),
                                 ),
-                              );
-                            },
-                            scrollDirection: Axis.horizontal,
-                          ),
-                        ),
+                              ),
+                              onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => EventPage(event),
+                                ),
+                              ),
+                              child: EventCard(event),
+                            ),
+                          );
+                        },
+                        scrollDirection: Axis.horizontal,
                       ),
-              ],
-            ),
+                    ),
+            ],
           ),
         ],
       ),

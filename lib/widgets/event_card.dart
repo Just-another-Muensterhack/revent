@@ -17,9 +17,10 @@ class _EventCardState extends State<EventCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      clipBehavior: Clip.antiAlias,
+      elevation: 0.0,
+      clipBehavior: Clip.hardEdge,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Stack(
         children: [
@@ -42,7 +43,13 @@ class _EventCardState extends State<EventCard> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  widget.event.date.toString(),
+                  widget.event.date
+                      .toString()
+                      .split(" ")
+                      .first
+                      .split("-")
+                      .reversed
+                      .join("."),
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     color: Colors.white,

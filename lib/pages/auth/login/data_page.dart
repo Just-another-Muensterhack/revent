@@ -189,7 +189,7 @@ class _DataPageState extends State<DataPage> {
                         if (_formKey.currentState.validate()) {
                           _formKey.currentState.save();
 
-                          _createUser().then((value) => Navigator.push(
+                          _createUser().then((value) => Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => HomePage(),

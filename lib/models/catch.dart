@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:revent/models/Member.dart';
+import 'package:revent/models/member.dart';
 import 'package:revent/models/commons.dart';
 import 'package:revent/models/location.dart';
 

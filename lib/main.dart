@@ -87,20 +87,6 @@ class _AppState extends State<App> {
       return SplashScreen();
     }
 
-    return Container(
-      color: primary,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            constraints: BoxConstraints(
-              maxWidth: 550,
-            ),
-            child: _currentPage,
-          ),
-        ],
-      ),
-    );
+    return _currentPage;
   }
 }

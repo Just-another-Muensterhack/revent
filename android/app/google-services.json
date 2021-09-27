@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "710532243226-ts9s60jo193o14119qgk673vecttqeog.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.reventapp.app",
+            "certificate_hash": "b6c520fb80b5588fd433913da391b593e9da1f93"
+          }
+        },
+        {
           "client_id": "710532243226-b95d4jdm1rut0l8d5ut6jciv0toupgu1.apps.googleusercontent.com",
           "client_type": 3
         }

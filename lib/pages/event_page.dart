@@ -92,135 +92,126 @@ class _EventContainerState extends State<_EventContainer> {
         ),
       ),
       child: this.organizer != null
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+          ? ListView(
+              shrinkWrap: true,
               children: [
                 Container(
                   padding: EdgeInsets.only(
                     top: 15.0,
                   ),
                 ),
-                ListView(
-                  shrinkWrap: true,
-                  children: [
-                    ListTile(
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.white,
-                        ),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                      title: Text(
-                        this.event.title,
-                        style: _header1Style,
-                      ),
+                ListTile(
+                  leading: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
                     ),
-                    ListTile(
-                      title: Text(this.event.description),
-                    ),
-                    ListTile(
-                      title: Text(dateFormater.format(this.event.date)),
-                      subtitle:
-                          Text(timeFormater.format(this.event.date) + " pm"),
-                      leading: Icon(
-                        Icons.event,
-                        color: Colors.white,
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.person, color: Colors.white),
-                      title: Text(organizer.name),
-                      subtitle: Text("Organizer"),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.web, color: Colors.white),
-                      title: Text(organizer.websiteURL),
-                      subtitle: Text("Website"),
-                      trailing: IconButton(
-                        color: Colors.white,
-                        icon: Icon(Icons.open_in_browser),
-                        onPressed: () async {
-                          String url = this.organizer.websiteURL;
-                          if (await canLaunch(url)) {
-                            await launch(
-                              url,
-                              forceSafariVC: true,
-                              forceWebView: true,
-                              enableJavaScript: true,
-                            );
-                          } else {
-                            throw 'Could not launch $url';
-                          }
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(this
-                          .event
-                          .genre
-                          .map((e) =>
-                              "#" + e.toString().split(".").last.toLowerCase())
-                          .join(" ")),
-                      leading: Icon(
-                        Icons.label_important_outline,
-                        color: Colors.white,
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.euro,
-                        color: Colors.white,
-                      ),
-                      title: Text(
-                        this
-                            .event
-                            .priceClass
-                            .toString()
-                            .split(".")
-                            .last
-                            .toLowerCase(),
-                      ),
-                      subtitle: Text("Pricing"),
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.location_on,
-                        color: Colors.white,
-                      ),
-                      title: Text(this.event.eventLocation.street +
-                          " " +
-                          this.event.eventLocation.houseNumber),
-                      subtitle: Text(
-                          this.event.eventLocation.postalCode +
-                              " " +
-                              this.event.eventLocation.city +
-                              ", " +
-                              this.event.eventLocation.country),
-                      trailing: IconButton(
-                        icon: Icon(
-                          Icons.open_in_new,
-                          color: Colors.white,
-                        ),
-                        onPressed: () async {
-                          String latitude =
-                              this.event.eventLocation.latitude.toString();
-                          String longitude =
-                              this.event.eventLocation.latitude.toString();
-                          String googleUrl =
-                              'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
-                          if (await canLaunch(googleUrl)) {
-                            await launch(googleUrl);
-                          } else {
-                            throw 'Could not open the map.';
-                          }
-                        },
-                      ),
-                    ),
-                  ],
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                  title: Text(
+                    this.event.title,
+                    style: _header1Style,
+                  ),
                 ),
-                Expanded(child: Container()),
+                ListTile(
+                  title: Text(this.event.description),
+                ),
+                ListTile(
+                  title: Text(dateFormater.format(this.event.date)),
+                  subtitle: Text(timeFormater.format(this.event.date) + " pm"),
+                  leading: Icon(
+                    Icons.event,
+                    color: Colors.white,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.person, color: Colors.white),
+                  title: Text(organizer.name),
+                  subtitle: Text("Organizer"),
+                ),
+                ListTile(
+                  leading: Icon(Icons.web, color: Colors.white),
+                  title: Text(organizer.websiteURL),
+                  subtitle: Text("Website"),
+                  trailing: IconButton(
+                    color: Colors.white,
+                    icon: Icon(Icons.open_in_browser),
+                    onPressed: () async {
+                      String url = this.organizer.websiteURL;
+                      if (await canLaunch(url)) {
+                        await launch(
+                          url,
+                          forceSafariVC: true,
+                          forceWebView: true,
+                          enableJavaScript: true,
+                        );
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                  ),
+                ),
+                ListTile(
+                  title: Text(this
+                      .event
+                      .genre
+                      .map((e) =>
+                          "#" + e.toString().split(".").last.toLowerCase())
+                      .join(" ")),
+                  leading: Icon(
+                    Icons.label_important_outline,
+                    color: Colors.white,
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.euro,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    this
+                        .event
+                        .priceClass
+                        .toString()
+                        .split(".")
+                        .last
+                        .toLowerCase(),
+                  ),
+                  subtitle: Text("Pricing"),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.location_on,
+                    color: Colors.white,
+                  ),
+                  title: Text(this.event.eventLocation.street +
+                      " " +
+                      this.event.eventLocation.houseNumber),
+                  subtitle: Text(this.event.eventLocation.postalCode +
+                      " " +
+                      this.event.eventLocation.city +
+                      ", " +
+                      this.event.eventLocation.country),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.open_in_new,
+                      color: Colors.white,
+                    ),
+                    onPressed: () async {
+                      String latitude =
+                          this.event.eventLocation.latitude.toString();
+                      String longitude =
+                          this.event.eventLocation.latitude.toString();
+                      String googleUrl =
+                          'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+                      if (await canLaunch(googleUrl)) {
+                        await launch(googleUrl);
+                      } else {
+                        throw 'Could not open the map.';
+                      }
+                    },
+                  ),
+                ),
                 Center(
                   child: Container(
                     width: 200.0,
@@ -256,9 +247,6 @@ class _EventContainerState extends State<_EventContainer> {
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  height: 25.0,
                 ),
               ],
             )

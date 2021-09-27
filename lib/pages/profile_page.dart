@@ -21,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: SingleChildScrollView(
             child: Container(
                 width: 500,
-                height: 383,
+                height: 600,
                 child: FutureBuilder(
                     future: Profile.getByReference(),
                     builder: (context, snapshot) {
@@ -124,9 +124,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             Text(AuthService.currentUser().displayName,
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white)),
-                            Text(AuthService.currentUser().email,
+                            /*Text(AuthService.currentUser().email,
                                 style: TextStyle(
-                                    fontSize: 15, color: Colors.white)),
+                                    fontSize: 15, color: Colors.white)),*/
                           ],
                         ),
                         IconButton(

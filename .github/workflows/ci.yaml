@@ -16,7 +16,7 @@ jobs:
         distribution: 'adopt'
         java-version: '11'
         check-latest: false
-    - uses: subosito/flutter-action@v1
+    - uses: subosito/flutter-action@v2.0.4
       with:
         channel: 'stable'
     - run: flutter pub get
@@ -39,7 +39,7 @@ jobs:
         distribution: 'adopt'
         java-version: '11'
         check-latest: false
-    - uses: subosito/flutter-action@v1
+    - uses: subosito/flutter-action@v2.0.4
       with:
         channel: 'stable'
     - run: flutter pub get

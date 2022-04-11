@@ -52,7 +52,7 @@ jobs:
         mv ./build/ios/iphoneos/Runner.app Payload
         zip -r -y Payload.zip Payload/Runner.app
         mv Payload.zip Payload.ipa
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: release-apk
         path: |
